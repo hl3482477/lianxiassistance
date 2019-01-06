@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsw.prj.dao.FamilyDao">
+  <resultMap id="BaseResultMap" type="com.xsw.prj.po.Family">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="family_id" jdbcType="VARCHAR" property="familyId" />
+    <result column="huzhu_id" jdbcType="VARCHAR" property="huzhuId" />
+    <result column="yikatong" jdbcType="VARCHAR" property="yikatong" />
+    <result column="dizhi" jdbcType="VARCHAR" property="dizhi" />
+    <result column="renkoushu" jdbcType="INTEGER" property="renkoushu" />
+    <result column="renjunshouru_nian" jdbcType="REAL" property="renjunshouruNian" />
+    <result column="org_id" jdbcType="VARCHAR" property="orgId" />
+    <result column="curr_family_type" jdbcType="VARCHAR" property="currFamilyType" />
+    <result column="baozhang_renkoushu" jdbcType="INTEGER" property="baozhangRenkoushu" />
+    <result column="baozhang_leibie" jdbcType="VARCHAR" property="baozhangLeibie" />
+    <result column="baozhang_zhanghao" jdbcType="VARCHAR" property="baozhangZhanghao" />
+    <result column="baozhang_yuanyin" jdbcType="VARCHAR" property="baozhangYuanyin" />
+    <result column="baozhang_jinge_yue" jdbcType="REAL" property="baozhangJingeYue" />
+    <result column="kaishixiangshou_riqi" jdbcType="TIMESTAMP" property="kaishixiangshouRiqi" />
+    <result column="pizhun_riqi" jdbcType="TIMESTAMP" property="pizhunRiqi" />
+    <result column="isDeleted" jdbcType="INTEGER" property="isdeleted" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="modify_user_id" jdbcType="VARCHAR" property="modifyUserId" />
+    <result column="modify_user_name" jdbcType="VARCHAR" property="modifyUserName" />
+    <result column="modidfy_date" jdbcType="TIMESTAMP" property="modidfyDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, family_id, huzhu_id, yikatong, dizhi, renkoushu, renjunshouru_nian, org_id, curr_family_type, 
+    baozhang_renkoushu, baozhang_leibie, baozhang_zhanghao, baozhang_yuanyin, baozhang_jinge_yue, 
+    kaishixiangshou_riqi, pizhun_riqi, isDeleted, create_date, create_user_id, create_user_name, 
+    modify_user_id, modify_user_name, modidfy_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_family
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_family
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xsw.prj.po.Family">
+    insert into tb_family (id, family_id, huzhu_id, 
+      yikatong, dizhi, renkoushu, 
+      renjunshouru_nian, org_id, curr_family_type, 
+      baozhang_renkoushu, baozhang_leibie, baozhang_zhanghao, 
+      baozhang_yuanyin, baozhang_jinge_yue, kaishixiangshou_riqi, 
+      pizhun_riqi, isDeleted, create_date, 
+      create_user_id, create_user_name, modify_user_id, 
+      modify_user_name, modidfy_date)
+    values (#{id,jdbcType=INTEGER}, #{familyId,jdbcType=VARCHAR}, #{huzhuId,jdbcType=VARCHAR}, 
+      #{yikatong,jdbcType=VARCHAR}, #{dizhi,jdbcType=VARCHAR}, #{renkoushu,jdbcType=INTEGER}, 
+      #{renjunshouruNian,jdbcType=REAL}, #{orgId,jdbcType=VARCHAR}, #{currFamilyType,jdbcType=VARCHAR}, 
+      #{baozhangRenkoushu,jdbcType=INTEGER}, #{baozhangLeibie,jdbcType=VARCHAR}, #{baozhangZhanghao,jdbcType=VARCHAR}, 
+      #{baozhangYuanyin,jdbcType=VARCHAR}, #{baozhangJingeYue,jdbcType=REAL}, #{kaishixiangshouRiqi,jdbcType=TIMESTAMP}, 
+      #{pizhunRiqi,jdbcType=TIMESTAMP}, #{isdeleted,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{createUserId,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{modifyUserId,jdbcType=VARCHAR}, 
+      #{modifyUserName,jdbcType=VARCHAR}, #{modidfyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xsw.prj.po.Family">
+    insert into tb_family
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="familyId != null">
+        family_id,
+      </if>
+      <if test="huzhuId != null">
+        huzhu_id,
+      </if>
+      <if test="yikatong != null">
+        yikatong,
+      </if>
+      <if test="dizhi != null">
+        dizhi,
+      </if>
+      <if test="renkoushu != null">
+        renkoushu,
+      </if>
+      <if test="renjunshouruNian != null">
+        renjunshouru_nian,
+      </if>
+      <if test="orgId != null">
+        org_id,
+      </if>
+      <if test="currFamilyType != null">
+        curr_family_type,
+      </if>
+      <if test="baozhangRenkoushu != null">
+        baozhang_renkoushu,
+      </if>
+      <if test="baozhangLeibie != null">
+        baozhang_leibie,
+      </if>
+      <if test="baozhangZhanghao != null">
+        baozhang_zhanghao,
+      </if>
+      <if test="baozhangYuanyin != null">
+        baozhang_yuanyin,
+      </if>
+      <if test="baozhangJingeYue != null">
+        baozhang_jinge_yue,
+      </if>
+      <if test="kaishixiangshouRiqi != null">
+        kaishixiangshou_riqi,
+      </if>
+      <if test="pizhunRiqi != null">
+        pizhun_riqi,
+      </if>
+      <if test="isdeleted != null">
+        isDeleted,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null">
+        modify_user_name,
+      </if>
+      <if test="modidfyDate != null">
+        modidfy_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="familyId != null">
+        #{familyId,jdbcType=VARCHAR},
+      </if>
+      <if test="huzhuId != null">
+        #{huzhuId,jdbcType=VARCHAR},
+      </if>
+      <if test="yikatong != null">
+        #{yikatong,jdbcType=VARCHAR},
+      </if>
+      <if test="dizhi != null">
+        #{dizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="renkoushu != null">
+        #{renkoushu,jdbcType=INTEGER},
+      </if>
+      <if test="renjunshouruNian != null">
+        #{renjunshouruNian,jdbcType=REAL},
+      </if>
+      <if test="orgId != null">
+        #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="currFamilyType != null">
+        #{currFamilyType,jdbcType=VARCHAR},
+      </if>
+      <if test="baozhangRenkoushu != null">
+        #{baozhangRenkoushu,jdbcType=INTEGER},
+      </if>
+      <if test="baozhangLeibie != null">
+        #{baozhangLeibie,jdbcType=VARCHAR},
+      </if>
+      <if test="baozhangZhanghao != null">
+        #{baozhangZhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="baozhangYuanyin != null">
+        #{baozhangYuanyin,jdbcType=VARCHAR},
+      </if>
+      <if test="baozhangJingeYue != null">
+        #{baozhangJingeYue,jdbcType=REAL},
+      </if>
+      <if test="kaishixiangshouRiqi != null">
+        #{kaishixiangshouRiqi,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pizhunRiqi != null">
+        #{pizhunRiqi,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserId != null">
+        #{modifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserName != null">
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modidfyDate != null">
+        #{modidfyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xsw.prj.po.Family">
+    update tb_family
+    <set>
+      <if test="familyId != null">
+        family_id = #{familyId,jdbcType=VARCHAR},
+      </if>
+      <if test="huzhuId != null">
+        huzhu_id = #{huzhuId,jdbcType=VARCHAR},
+      </if>
+      <if test="yikatong != null">
+        yikatong = #{yikatong,jdbcType=VARCHAR},
+      </if>
+      <if test="dizhi != null">
+        dizhi = #{dizhi,jdbcType=VARCHAR},
+      </if>
+      <if test="renkoushu != null">
+        renkoushu = #{renkoushu,jdbcType=INTEGER},
+      </if>
+      <if test="renjunshouruNian != null">
+        renjunshouru_nian = #{renjunshouruNian,jdbcType=REAL},
+      </if>
+      <if test="orgId != null">
+        org_id = #{orgId,jdbcType=VARCHAR},
+      </if>
+      <if test="currFamilyType != null">
+        curr_family_type = #{currFamilyType,jdbcType=VARCHAR},
+      </if>
+      <if test="baozhangRenkoushu != null">
+        baozhang_renkoushu = #{baozhangRenkoushu,jdbcType=INTEGER},
+      </if>
+      <if test="baozhangLeibie != null">
+        baozhang_leibie = #{baozhangLeibie,jdbcType=VARCHAR},
+      </if>
+      <if test="baozhangZhanghao != null">
+        baozhang_zhanghao = #{baozhangZhanghao,jdbcType=VARCHAR},
+      </if>
+      <if test="baozhangYuanyin != null">
+        baozhang_yuanyin = #{baozhangYuanyin,jdbcType=VARCHAR},
+      </if>
+      <if test="baozhangJingeYue != null">
+        baozhang_jinge_yue = #{baozhangJingeYue,jdbcType=REAL},
+      </if>
+      <if test="kaishixiangshouRiqi != null">
+        kaishixiangshou_riqi = #{kaishixiangshouRiqi,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pizhunRiqi != null">
+        pizhun_riqi = #{pizhunRiqi,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdeleted != null">
+        isDeleted = #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserName != null">
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modidfyDate != null">
+        modidfy_date = #{modidfyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xsw.prj.po.Family">
+    update tb_family
+    set family_id = #{familyId,jdbcType=VARCHAR},
+      huzhu_id = #{huzhuId,jdbcType=VARCHAR},
+      yikatong = #{yikatong,jdbcType=VARCHAR},
+      dizhi = #{dizhi,jdbcType=VARCHAR},
+      renkoushu = #{renkoushu,jdbcType=INTEGER},
+      renjunshouru_nian = #{renjunshouruNian,jdbcType=REAL},
+      org_id = #{orgId,jdbcType=VARCHAR},
+      curr_family_type = #{currFamilyType,jdbcType=VARCHAR},
+      baozhang_renkoushu = #{baozhangRenkoushu,jdbcType=INTEGER},
+      baozhang_leibie = #{baozhangLeibie,jdbcType=VARCHAR},
+      baozhang_zhanghao = #{baozhangZhanghao,jdbcType=VARCHAR},
+      baozhang_yuanyin = #{baozhangYuanyin,jdbcType=VARCHAR},
+      baozhang_jinge_yue = #{baozhangJingeYue,jdbcType=REAL},
+      kaishixiangshou_riqi = #{kaishixiangshouRiqi,jdbcType=TIMESTAMP},
+      pizhun_riqi = #{pizhunRiqi,jdbcType=TIMESTAMP},
+      isDeleted = #{isdeleted,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      modify_user_id = #{modifyUserId,jdbcType=VARCHAR},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modidfy_date = #{modidfyDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

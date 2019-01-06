@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色信息录入</title>
+    <link rel="stylesheet" type="text/css" href="css/gm.css">
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/gm.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script src="layui/layui.js"  media="all"></script>
+
+    <link rel="stylesheet" href="css/jquery.treeview.css" />
+    <link rel="stylesheet" href="css/screen.css" />
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/jquery.cookie.js" type="text/javascript"></script>
+    <script src="js/jquery.treeview.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/demotree.js"></script>
+    <style>
+        .file:hover{
+            cursor: pointer;
+        }
+        #fatherMenu:hover{
+            cursor: pointer;
+        }
+        .layui-unselect{
+
+        }
+        .layui-form-checkbox{
+        }
+    </style>
+</head>
+
+<body>
+<div class="panel panel-default">
+    <!--    <div class="panel-heading">
+            <h4 class="modal-title" id="tit" style="font-weight: bold">
+                城市低保信息录入
+            </h4>
+        </div>-->
+    <div class="panel-body">
+        <form>
+        <table class="table  table-bordered">
+            <thead>
+            <tr>
+                <th style="line-height: 34px;font-weight: normal">角色名</th>
+                <th colspan="3">
+                    <input type="text" class="form-control" placeholder="请输入角色名">
+                </th>
+                <th style="line-height: 34px;font-weight: normal">角色等级</th>
+                <th colspan="3">
+                    <select class="form-control" id="">
+                        <option>11111</option>
+                        <option>21111</option>
+                        <option>31111</option>
+                        <option>41111</option>
+                        <option>51111</option>
+                    </select>
+                </th>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr>
+                <td style="line-height: 65px">备注</td>
+                <td colspan="6"><textarea class="form-control" rows="3" placeholder="请输入需要添加的备注信息"></textarea></td>
+            </tr>
+            <!--<tr>
+                <td colspan="6">
+                    <div class="form-group" style="margin: 0;position: relative;">
+                        <input type="text" id="fatherMenu" class="form-control" placeholder="请点击对应文件名？进行选择">
+                        <div class="tree">
+                            <ul id="browser" class="filetree">
+
+                                <li><span class="folder">Folder 1</span>
+
+                                    <ul>
+
+                                        <li>
+                                      <span class="file">
+                                                        <input type="checkbox" name="allchecked">
+                                                    <span class="checkboxitem" title="Item 1.11">
+                                                        <font>Item 1.11</font>
+
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox1" value="option1"> 增加
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox2" value="option2"> 删除
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox3" value="option3"> 修改
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox4" value="option3"> 查看
+                                                        </label>
+                                                    </span>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="folder">Subfolder 2.1</span>
+
+                                            <ul id="folder2">
+                                                <li>
+                                                    <span class="file">
+                                                        <input type="checkbox" name="allchecked">
+                                                    <span class="checkboxitem" title="Item 1.12">
+                                                        <font>Item 1.12</font>
+
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox1" value="option1"> 增加
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox2" value="option2"> 删除
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox3" value="option3"> 修改
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox4" value="option3"> 查看
+                                                        </label>
+                                                    </span>
+                                            </span>
+                                                </li>
+
+                                                <li>
+                                             <span class="file">
+                                                        <input type="checkbox" name="allchecked">
+                                                    <span class="checkboxitem" title="Item 1.13">
+                                                        <font>Item 1.13</font>
+
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox1" value="option1"> 增加
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox2" value="option2"> 删除
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox3" value="option3"> 修改
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox4" value="option3"> 查看
+                                                        </label>
+                                                    </span>
+                                            </span>
+                                                </li>
+                                            </ul>
+                                        </li>
+
+                                    </ul>
+
+                                </li>
+
+                                <li><span class="folder">Folder 2</span>
+
+                                    <ul>
+
+                                        <li>
+                                            <span class="folder">Subfolder 2.1</span>
+                                            <ul id="folder21">
+                                                <li>
+                                             <span class="file">
+                                                        <input type="checkbox" name="allchecked">
+                                                    <span class="checkboxitem" title="Item 1.14">
+                                                        <font>Item 1.14</font>
+
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox1" value="option1"> 增加
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox2" value="option2"> 删除
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox3" value="option3"> 修改
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox4" value="option3"> 查看
+                                                        </label>
+                                                    </span>
+                                            </span>
+                                                </li>
+
+                                                <li>
+                                           <span class="file">
+                                                        <input type="checkbox" name="allchecked">
+                                                    <span class="checkboxitem" title="Item 1.15">
+                                                        <font>Item 1.15</font>
+
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox1" value="option1"> 增加
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox2" value="option2"> 删除
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox3" value="option3"> 修改
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox4" value="option3"> 查看
+                                                        </label>
+                                                    </span>
+                                            </span>
+                                                </li>
+                                            </ul>
+
+                                        </li>
+
+                                        <li>
+                                            <span class="file">
+                                                        <input type="checkbox" name="allchecked">
+                                                    <span class="checkboxitem" title="Item 1.16">
+                                                        <font>Item 1.16</font>
+
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox1" value="option1"> 增加
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox2" value="option2"> 删除
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox3" value="option3"> 修改
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox4" value="option3"> 查看
+                                                        </label>
+                                                    </span>
+                                            </span>
+
+                                        </li>
+
+                                    </ul>
+
+                                </li>
+
+                                <li class="closed"><span class="folder">Folder 3 (closed at start)</span>
+
+                                    <ul>
+
+                                        <li>
+                                             <span class="file">
+                                                        <input type="checkbox" name="allchecked">
+                                                    <span class="checkboxitem" title="Item 1.17">
+                                                        <font>Item 1.17</font>
+
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox1" value="option1"> 增加
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox2" value="option2"> 删除
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox3" value="option3"> 修改
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox4" value="option3"> 查看
+                                                        </label>
+                                                    </span>
+                                            </span>
+                                        </li>
+
+                                    </ul>
+
+                                </li>
+
+                                <li>
+                                      <span class="file">
+                                                        <input type="checkbox" name="allchecked">
+                                                    <span class="checkboxitem" title="Item 1.18">
+                                                        <font>Item 1.18</font>
+
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox1" value="option1"> 增加
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox2" value="option2"> 删除
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox3" value="option3"> 修改
+                                                        </label>
+                                                        <label class="checkbox-inline">
+                                                            <input type="checkbox" name="inlineCheckbox4" value="option3"> 查看
+                                                        </label>
+                                                    </span>
+                                            </span>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                </td>
+
+            </tr>-->
+
+
+            </tbody>
+        </table>
+        </form>
+    </div>
+    <script>
+        $(function () {
+            $(".file font   ").click(function () {
+                //alert(5)
+                var fileValue=$(this).text();
+                $("#fatherMenu").val(fileValue);
+
+            });
+            $("input[name=allchecked]").click(function () {
+                var fontValue=$(".checkboxitem").attr("title");
+                if($('input[name=allchecked]').is(":checked")){
+                    if(fontValue=='Item 1.16'){
+                        $(this).siblings('span').children().find('input[type=checkbox]').attr("checked",true)
+                    }
+                    else if(fontValue=='Item 1.15'){
+                        $(this).siblings('span').children().find('input[type=checkbox]').attr("checked",true)
+                    }
+                    else if(fontValue=='Item 1.14'){
+                        $(this).siblings('span').children().find('input[type=checkbox]').attr("checked",true)
+                    }
+                    else if(fontValue=='Item 1.13'){
+                        $(this).siblings('span').children().find('input[type=checkbox]').attr("checked",true)
+                    }
+                    else if(fontValue=='Item 1.12'){
+                        $(this).siblings('span').children().find('input[type=checkbox]').attr("checked",true)
+                    }
+                    else if(fontValue=='Item 1.11'){
+                        $(this).siblings('span').children().find('input[type=checkbox]').attr("checked",true)
+                    }
+                    else if(fontValue=='Item 1.17'){
+                        $(this).siblings('span').children().find('input[type=checkbox]').attr("checked",true)
+                    }
+                    else if(fontValue=='Item 1.18'){
+                        $(this).siblings('span').children().find('input[type=checkbox]').attr("checked",true)
+                    }
+                }
+                else {
+                    $(this).siblings('span').children().find('input[type=checkbox]').attr("checked",false)
+                }
+            })
+        })
+    </script>
+</div>
+</body>
+</html>

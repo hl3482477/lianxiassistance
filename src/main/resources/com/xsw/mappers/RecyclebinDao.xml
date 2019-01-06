@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsw.prj.dao.RecyclebinDao">
+
+  <select id="getCount"   parameterType="map" resultType="java.lang.Integer">
+    select count(1) from tb_recyclebin
+    WHERE 1 = 1
+    <if test="recyclebin_id !=null and recyclebin_id !='' ">
+      and recyclebin_id = #{recyclebin_id}
+    </if>
+    <if test="recyclebin_name !=null and recyclebin_name !='' ">
+      and recyclebin_name = #{recyclebin_name}
+    </if>
+    <if test="recyclebin_table !=null and recyclebin_table !='' ">
+      and recyclebin_table = #{recyclebin_table}
+    </if>
+
+    <if test="keyword !=null and keyword !='' ">
+      and ( recyclebin_id LIKE '%${keyword}%' or  recyclebin_name LIKE '%${keyword}%' or recyclebin_table LIKE '%${keyword}%' )
+    </if>
+  </select>
+
+  <select id="getAllByPage" parameterType="map" resultMap="BaseResultMap">
+
+    select * from tb_recyclebin
+    WHERE 1 = 1
+    <if test="recyclebin_id !=null and recyclebin_id !='' ">
+      and recyclebin_id = #{recyclebin_id}
+    </if>
+    <if test="recyclebin_name !=null and recyclebin_name !='' ">
+      and recyclebin_name = #{recyclebin_name}
+    </if>
+    <if test="recyclebin_table !=null and recyclebin_table !='' ">
+      and recyclebin_table = #{recyclebin_table}
+    </if>
+    <if test="keyword !=null and keyword !='' ">
+      and ( recyclebin_id LIKE '%${keyword}%' or  recyclebin_name LIKE '%${keyword}%' or recyclebin_table LIKE '%${keyword}%' )
+    </if>
+    limit #{startIndex} , #{limit}
+  </select>
+
+  <resultMap id="BaseResultMap" type="com.xsw.prj.po.Recyclebin">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="recyclebin_id" jdbcType="VARCHAR" property="recyclebinId" />
+    <result column="recyclebin_name" jdbcType="VARCHAR" property="recyclebinName" />
+    <result column="recyclebin_table" jdbcType="VARCHAR" property="recyclebinTable" />
+    <result column="recyclebin_field_key" jdbcType="VARCHAR" property="recyclebinFieldKey" />
+    <result column="recyclebin_field_value" jdbcType="VARCHAR" property="recyclebinFieldValue" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="create_date" jdbcType="VARCHAR" property="createDate" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, recyclebin_id, recyclebin_name, recyclebin_table, recyclebin_field_key, recyclebin_field_value, 
+    memo, create_date, create_user_id, create_user_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_recyclebin
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_recyclebin
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <!--
+    在xxmapper.xml文件里面，插入的时间字段，采用数据库当前时间 Now()
+    INSERT INTO `tb_org` (org_code,org_name,memo,create_date) VALUES (#{org_code},#{org_name},#{memo},Now() )
+  -->
+  <insert id="insert" parameterType="com.xsw.prj.po.Recyclebin">
+    insert into tb_recyclebin (id, recyclebin_id, recyclebin_name, 
+      recyclebin_table, recyclebin_field_key, recyclebin_field_value, 
+      memo, create_date, create_user_id, 
+      create_user_name)
+    values (#{id,jdbcType=INTEGER}, #{recyclebinId,jdbcType=VARCHAR}, #{recyclebinName,jdbcType=VARCHAR}, 
+      #{recyclebinTable,jdbcType=VARCHAR}, #{recyclebinFieldKey,jdbcType=VARCHAR}, #{recyclebinFieldValue,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR}, Now(), #{createUserId,jdbcType=VARCHAR},
+      #{createUserName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xsw.prj.po.Recyclebin">
+    insert into tb_recyclebin
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="recyclebinId != null">
+        recyclebin_id,
+      </if>
+      <if test="recyclebinName != null">
+        recyclebin_name,
+      </if>
+      <if test="recyclebinTable != null">
+        recyclebin_table,
+      </if>
+      <if test="recyclebinFieldKey != null">
+        recyclebin_field_key,
+      </if>
+      <if test="recyclebinFieldValue != null">
+        recyclebin_field_value,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="recyclebinId != null">
+        #{recyclebinId,jdbcType=VARCHAR},
+      </if>
+      <if test="recyclebinName != null">
+        #{recyclebinName,jdbcType=VARCHAR},
+      </if>
+      <if test="recyclebinTable != null">
+        #{recyclebinTable,jdbcType=VARCHAR},
+      </if>
+      <if test="recyclebinFieldKey != null">
+        #{recyclebinFieldKey,jdbcType=VARCHAR},
+      </if>
+      <if test="recyclebinFieldValue != null">
+        #{recyclebinFieldValue,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        Now(),
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xsw.prj.po.Recyclebin">
+    update tb_recyclebin
+    <set>
+      <if test="recyclebinId != null">
+        recyclebin_id = #{recyclebinId,jdbcType=VARCHAR},
+      </if>
+      <if test="recyclebinName != null">
+        recyclebin_name = #{recyclebinName,jdbcType=VARCHAR},
+      </if>
+      <if test="recyclebinTable != null">
+        recyclebin_table = #{recyclebinTable,jdbcType=VARCHAR},
+      </if>
+      <if test="recyclebinFieldKey != null">
+        recyclebin_field_key = #{recyclebinFieldKey,jdbcType=VARCHAR},
+      </if>
+      <if test="recyclebinFieldValue != null">
+        recyclebin_field_value = #{recyclebinFieldValue,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null">
+        create_date = Now(),
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xsw.prj.po.Recyclebin">
+    update tb_recyclebin
+    set recyclebin_id = #{recyclebinId,jdbcType=VARCHAR},
+      recyclebin_name = #{recyclebinName,jdbcType=VARCHAR},
+      recyclebin_table = #{recyclebinTable,jdbcType=VARCHAR},
+      recyclebin_field_key = #{recyclebinFieldKey,jdbcType=VARCHAR},
+      recyclebin_field_value = #{recyclebinFieldValue,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      create_date = Now(),
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

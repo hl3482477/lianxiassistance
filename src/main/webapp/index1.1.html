@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>九江市濂溪区社会救助管理系统</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="layui/css/layui.mobile.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="layui/layui.js"  media="all"></script>
+<!--
+    <script src="layui/layui.all.js"></script>
+-->
+</head>
+<style>
+    /*滚动条样式*/
+    #lefcontent::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 1px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+    }
+    #lefcontent::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+        border-radius: 5px;
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        background: rgba(0,0,0,0.2);
+    }
+    #lefcontent::-webkit-scrollbar-track {/*滚动条里面轨道*/
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        border-radius: 0;
+        background: rgba(0,0,0,0.1);
+    }
+
+
+</style>
+<body>
+<form action="#" method="get" name="form1" id="form1" style="display: none;">
+    <!--获取浏览器的宽高，不能注释-->
+    浏览器窗口 的 实际高度: <input type="text" name="availHeight" size="4"><br>
+    浏览器窗口 的 实际宽度: <input type="text" name="availWidth" size="4"><br>
+</form>
+<div class="container-fluid">
+<div class="row">
+    <div class="col-sm-12 topnavtit"  id="topNav">
+        <span style="text-shadow: 0 0 10px #0f8ba6;font-weight: bold;font-size: 25px;letter-spacing: 3px;">九江市濂溪区社会救助管理系统</span>
+    </div>
+    <div class="col-sm-12 topNavMsg">
+        <div class="row" style="padding: 5px 0">
+            <div class="col-sm-4">
+                <div id="showtime"></div>
+            </div>
+            <div class="col-sm-2"><span class="uerName">用户：魏工</span></div>
+            <div class="col-sm-5"><span class="uerName">单位：九江新思维科技有限公司</span></div>
+            <div class="col-sm-1"><span class="outLogin">退出</span></div>
+        </div>
+    </div>
+</div>
+<script>
+    function showTime(){
+        var show_day=new Array('星期一','星期二','星期三','星期四','星期五','星期六','星期日');
+        var time=new Date();
+        var year=time.getFullYear();
+        var month=time.getMonth();
+        var date=time.getDate();
+        var day=time.getDay();
+        var hour=time.getHours();
+        var minutes=time.getMinutes();
+        var second=time.getSeconds();
+        month<10?month='0'+month:month;
+        month=month+1;
+        hour<10?hour='0'+hour:hour;
+        minutes<10?minutes='0'+minutes:minutes;
+        second<10?second='0'+second:second;
+        var now_time='当前时间：'+year+'年'+month+'月'+date+'日'+' '+show_day[day-1]+' '+hour+':'+minutes+':'+second;
+        document.getElementById('showtime').innerHTML=now_time;
+        setTimeout("showTime();",1000);
+    }
+    $(document).ready(function () {
+        showTime()
+    })
+</script>
+
+    <div class="row" style="background-color: #f5f5f5;height: 36px;margin-top: 5px;">
+        <div class="col-sm-2" id="leftNavList">
+           
+            <span>
+                <a href="##"></a>
+                <strong id="leftContentCtrl" style="cursor: pointer" title="隐藏导航菜单">导航菜单-</strong>
+            </span>
+        </div>
+        <div class="col-sm-10" >
+            <ul class="breadcrumb" style="overflow: hidden" id="navbarmap">
+                <li><a href="#">当前位置</a></li>
+                <li><a href="text.html" class="firstlistval">系统首页</a></li>
+                <li><a href="#" class="secondlistval"></a></li>
+                <li><a href="#" class="thirdlistval"></a></li>
+            </ul>
+        </div>
+
+    </div>
+<div class="row" id="contentWrap">
+    <div id="lefcontent" class="col-sm-2">
+        <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" id="leftNavBar" style="width: 100%">
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;" class="navlisttit">救助档案</a>
+                <dl class="layui-nav-child"  id="layui-nav-child-first">
+                    <dd><a class="a" href="javascript:;" name="family_dibao_city.html">城市低保</a></dd>
+                    <dd><a class="a" href="javascript:;" name="Rural%20minimum%20living%20standard.html">农村低保</a></dd>
+                    <dd><a class="a" href="javascript:;" name="Temporary%20assistance.html">临时救助</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;" class="navlisttit">业务办理</a>
+                <dl class="layui-nav-child" id="layui-nav-child-second">
+                    <dd><a  class="a" href="javascript:;" name="Business%20application.html">业务申请</a></dd>
+                    <dd><a  class="a" href="javascript:;" name="Business%20audit.html">业务审核</a></dd>
+                    <dd><a  class="a" href="javascript:;" name="Business%20approval.html">业务审批</a></dd>
+                    <dd><a class="a" href="javascript:;" name="Business%20enquiry.html">业务查询</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;" class="navlisttit">统计报表</a>
+                <dl class="layui-nav-child" id="layui-nav-child-third">
+                    <dd><a class="a" href="javascript:;" name="Monthly%20release%20of%20funds.html">资金月发放表</a></dd>
+                    <dd><a class="a" href="javascript:;" name="Details%20of%20monthly%20issuance%20of%20funds.html">资金月发放明细</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;" class="navlisttit">系统管理</a>
+                <dl class="layui-nav-child" id="layui-nav-child-fourth">
+                    <dd><a class="a" href="javascript:;" name="Menu information.html">菜单信息</a></dd>
+                    <dd><a class="a" href="javascript:;" name="Operation button.html">操作按钮</a></dd>
+                    <dd><a class="a" href="javascript:;" name="Role management.html">角色管理</a></dd>
+                    <dd><a class="a" href="javascript:;" name="organization structure.html">组织结构</a></dd>
+                    <dd><a class="a" href="javascript:;" name="account management.html">账号管理</a></dd>
+                    <dd><a class="a" href="javascript:;" name="Password management.html">密码管理</a></dd>
+                    <dd><a class="a" href="javascript:;" name="account management.html">信息回收</a></dd>
+                    <dd><a class="a" href="javascript:;" name="Password management.html">系统日志</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    <div id="rightcontent" class="col-sm-10" style="">
+        <div class="row" id="mainFlame">
+            <div class="col-sm-12" id="rightcontentIframe">
+                <iframe class="first-item" src="main.html" scrolling="no" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12" id="banner">
+                <iframe class="first-item" src="family_dibao_city.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="first-item" src="Rural%20minimum%20living%20standard.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="first-item" src="Temporary%20assistance.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="second-item" src="Business%20application.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="second-item" src="Business%20audit.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="second-item" src="Business%20approval.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="second-item" src="Business%20enquiry.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="third-item" src="Monthly%20release%20of%20funds.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="third-item" src="Details%20of%20monthly%20issuance%20of%20funds.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="fourth-item" src="Menu information.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="fourth-item" src="Operation button.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="fourth-item" src="Role management.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="fourth-item" src="organization structure.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="fourth-item" src="account management.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="fourth-item" src="Password management.html" width="100%" height="100%" frameborder="0"></iframe>
+
+                <iframe class="fourth-item" src="Information recovery.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="fourth-item" src="system log.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-sm-12" id="footer">
+            document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth
+        </div>
+    </div>
+</div>
+<script>
+    //左侧导航栏控制右侧主题内容框架的载入
+    $(function () {
+        $("#banner").hide();
+        $('#banner>.first-item').hide();
+        $('#layui-nav-child-first dd').click(function () {
+            $("#banner").show();
+            $('#banner>.second-item').hide();
+            $('#banner>.third-item').hide();
+            $('#banner>.fourth-item').hide();
+            $("#mainFlame").hide();
+            $('#banner').find('.first-item').css('display', 'none');
+            $('#banner').find('.first-item').eq($(this).index()).fadeIn(1000);
+        });
+        $('#banner>.second-item').hide();
+        $('#layui-nav-child-second dd').click(function () {
+            $("#banner").show();
+            $('#banner>.first-item').hide();
+            $('#banner>.third-item').hide();
+            $('#banner>.fourth-item').hide();
+            $("#mainFlame").hide();
+            $('#banner').find('.second-item').css('display', 'none');
+            $('#banner').find('.second-item').eq($(this).index()).fadeIn(1000);
+        });
+        $('#banner>.third-item').hide();
+        $('#layui-nav-child-third dd').click(function () {
+            $("#banner").show();
+            $('#banner>.first-item').hide();
+            $('#banner>.second-item').hide();
+            $('#banner>.fourth-item').hide();
+            $("#mainFlame").hide();
+            $('#banner').find('.third-item').css('display', 'none');
+            $('#banner').find('.third-item').eq($(this).index()).fadeIn(1000);
+        });
+        $('#banner>.fourth-item').hide();
+        $('#layui-nav-child-fourth dd').click(function () {
+            $("#banner").show();
+            $('#banner>.first-item').hide();
+            $('#banner>.second-item').hide();
+            $('#banner>.third-item').hide();
+            $("#mainFlame").hide();
+            $('#banner').find('.fourth-item').css('display', 'none');
+            $('#banner').find('.fourth-item').eq($(this).index()).fadeIn(1000);
+        });
+    })
+/*
+    $(".closeForm").click(function () {
+        if($(this).html()=="X"){
+            $("#formWrap").fadeOut();
+            $(this).html("+");
+            $(this).attr("title","显示")
+        }
+        else if($(this).html()=="+"){
+            $("#formWrap").fadeIn();
+            $(this).html("X");
+
+            $(this).attr("title","隐藏")
+        }
+*/
+    $(function () {
+       $("#leftContentCtrl").click(function () {
+           var leftContentCtrlVal=$(this).html();
+           if(leftContentCtrlVal=="导航菜单-"){
+               $("#lefcontent").hide();
+               $("#rightcontent").attr("class","col-sm-12");
+               $(this).html("导航菜单+");
+               $(this).attr("title","显示导航菜单")
+           }
+           else if(leftContentCtrlVal=='导航菜单+') {
+               $("#lefcontent").show();
+               $("#rightcontent").attr("class","col-sm-10");
+               $(this).html("导航菜单-");
+               $(this).attr("title","隐藏导航菜单")
+           }
+
+       })
+    })
+</script>
+    <script>
+        //左侧导航栏
+    layui.use('element', function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        //监听导航点击
+        element.on('nav(demo)', function(elem){
+            //console.log(elem)
+            layer.msg(elem.text());
+        });
+    });
+    //导航路径
+    $(function () {
+        $('.navlisttit').click(function () {
+            var leftNavBarList=$(this).text();
+            //alert(leftNavBarList)
+            $(".secondlistval").text(leftNavBarList)
+
+
+
+        });
+        $('.layui-nav-child dd').click(function () {
+            var leftNavBarList=$(this).text();
+            //alert(secondlistval)
+            if(leftNavBarList=='城市低保'||leftNavBarList=='农村低保'||leftNavBarList=='临时救助'){
+                $('.secondlistval').text("救助档案")
+            }
+            else if(leftNavBarList=='业务申请'||leftNavBarList=='业务审核'||leftNavBarList=='业务审批'||leftNavBarList=='业务查询'){
+                $('.secondlistval').text("业务办理")
+            }
+            else if(leftNavBarList=='资金月发放表'||leftNavBarList=='资金月发放明细'){
+                $('.secondlistval').text("统计报表")
+            }
+            else {
+                $('.secondlistval').text("系统管理")
+            }
+            $('.thirdlistval').text(leftNavBarList)
+        })
+    })
+</script>
+<script type="text/javascript">
+
+    var winWidth = 0;
+    var winHeight = 0;
+    function findDimensions() //函数：获取尺寸
+    {
+        //获取窗口宽度
+        if (window.innerWidth)
+            winWidth = window.innerWidth;
+        else if ((document.body) && (document.body.clientWidth))
+            winWidth = document.body.clientWidth;
+        //获取窗口高度
+        if (window.innerHeight)
+            winHeight = window.innerHeight;
+        else if ((document.body) && (document.body.clientHeight))
+            winHeight = document.body.clientHeight;
+        //通过深入Document内部对body进行检测，获取窗口大小
+        if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth)
+        {
+            winHeight = document.documentElement.clientHeight;
+            winWidth = document.documentElement.clientWidth;
+        }
+        //结果输出至两个文本框
+        /*
+         document.form1.availHeight.value= winHeight;
+         */
+        document.form1.availWidth.value= winWidth;
+        $("input[name=availHeight]").val(winHeight);
+        var contentWrapHeight=Number(winHeight-113-36-37-20);
+        var bodyHeight=Number(winHeight);
+        //alert(paddingTop)
+        //alert(diffrentHight)
+        $("#contentWrap").css({
+            "height":contentWrapHeight,
+            "width":winWidth,
+            "overflow":"auto"
+        });
+        $("#lefcontent").css({
+            "height":contentWrapHeight,
+            "overflow":"auto"
+        });
+        $("#rightcontentIframe").css({
+            "height":contentWrapHeight,
+            "overflow":"auto",
+            "overflow-y":"hidden",
+        });
+        $("#banner").css({
+            "height":contentWrapHeight,
+            "overflow":"auto",
+            "overflow-y":"hidden",
+        });
+        $("#mainFlame").css({
+            "height":contentWrapHeight,
+            "overflow":"auto",
+            "overflow-y":"hidden",
+        });
+        if(bodyHeight>768){
+            $(".layui-nav-item:gt(1)").addClass('layui-nav-itemed')
+        }
+    }
+    findDimensions();
+    //调用函数，获取数值
+    window.onresize=findDimensions;
+</script>
+</body>
+</html>

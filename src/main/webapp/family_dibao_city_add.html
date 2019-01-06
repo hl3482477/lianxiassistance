@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <title>城市低保信息录入</title>
+</head>
+<body>
+<div class="panel panel-default">
+<!--    <div class="panel-heading">
+        <h4 class="modal-title" id="tit" style="font-weight: bold">
+            城市低保信息录入
+        </h4>
+    </div>-->
+    <div class="panel-body">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th style="line-height: 34px;font-weight: normal">所在单位</th>
+                <th colspan="3">
+                    <select class="form-control" id="company">
+                        <option>11111</option>
+                        <option>21111</option>
+                        <option>31111</option>
+                        <option>41111</option>
+                        <option>51111</option>
+                    </select>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="line-height: 34px;">姓名</td>
+                <td>
+                    <input type="text" class="form-control" name="username" placeholder="请输入姓名">
+                </td>
+                <td style="line-height: 34px;">性别</td>
+                <td>
+                    <label class="radio-inline">
+                        <input type="radio" name="sex" value="男" checked>男
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="sex" value="女">女
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td style="line-height: 34px;">身体状况</td>
+                <td>
+                    <select class="form-control" id="body">
+                        <option>11111</option>
+                        <option>21111</option>
+                        <option>31111</option>
+                        <option>41111</option>
+                        <option>51111</option>
+                    </select>
+                </td>
+                <td style="line-height: 34px;">文化程度</td>
+                <td>
+                    <select class="form-control" id="education">
+                        <option>11111</option>
+                        <option>21111</option>
+                        <option>31111</option>
+                        <option>41111</option>
+                        <option>51111</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="line-height: 34px;">政治面貌</td>
+                <td>
+                    <select class="form-control" id="politics">
+                        <option>11111</option>
+                        <option>21111</option>
+                        <option>31111</option>
+                        <option>41111</option>
+                        <option>51111</option>
+                    </select>
+                </td>
+                <td style="line-height: 34px;">家庭人口</td>
+                <td>
+                    <input type="text" class="form-control" name="familynumber" placeholder="请输入家庭人口">
+                </td>
+            </tr>
+            <tr>
+                <td style="line-height: 34px;">家庭地址</td>
+                <td>
+                    <input type="text" class="form-control" name="familyplace" placeholder="请输入家庭地址">
+                </td>
+                <td style="line-height: 34px;">身份证号码</td>
+                <td>
+                    <input type="text" class="form-control" name="idcard" placeholder="请输入身份证号码">
+                </td>
+            </tr>
+            <tr>
+                <td style="line-height: 34px;">一卡通账号</td>
+                <td>
+                    <input type="text" class="form-control" name="bankcard" placeholder="请输入一卡通账号">
+                </td>
+                <td style="line-height: 34px;">保障人数</td>
+                <td>
+                    <input type="text" class="form-control" name="peoplenumber" placeholder="请输入保障人数">
+                </td>
+            </tr>
+            <tr>
+                <td style="line-height: 34px;">致贫原因</td>
+                <td colspan="3">
+                    <textarea class="form-control" name="reason" rows="3" placeholder="请输入导致贫困的原因"></textarea>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+  <!--  <div class="panel-footer" style="text-align: center">
+        <button type="button" class="btn btn-success" id="dibaoAddCtrl">
+            保存
+        </button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">关闭
+        </button>
+
+    </div>-->
+</div>
+</body>
+</html>

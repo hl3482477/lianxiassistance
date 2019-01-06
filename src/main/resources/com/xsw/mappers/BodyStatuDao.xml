@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsw.prj.dao.BodyStatuDao">
+  <resultMap id="BaseResultMap" type="com.xsw.prj.po.BodyStatu">
+    <id column="shentizhuangkuang_id" jdbcType="VARCHAR" property="shentizhuangkuangId" />
+    <result column="shentizhuangkuang_name" jdbcType="VARCHAR" property="shentizhuangkuangName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    shentizhuangkuang_id, shentizhuangkuang_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_family_shentizhuangkuang
+    where shentizhuangkuang_id = #{shentizhuangkuangId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_family_shentizhuangkuang
+    where shentizhuangkuang_id = #{shentizhuangkuangId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xsw.prj.po.BodyStatu">
+    insert into tb_family_shentizhuangkuang (shentizhuangkuang_id, shentizhuangkuang_name
+      )
+    values (#{shentizhuangkuangId,jdbcType=VARCHAR}, #{shentizhuangkuangName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xsw.prj.po.BodyStatu">
+    insert into tb_family_shentizhuangkuang
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shentizhuangkuangId != null">
+        shentizhuangkuang_id,
+      </if>
+      <if test="shentizhuangkuangName != null">
+        shentizhuangkuang_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shentizhuangkuangId != null">
+        #{shentizhuangkuangId,jdbcType=VARCHAR},
+      </if>
+      <if test="shentizhuangkuangName != null">
+        #{shentizhuangkuangName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xsw.prj.po.BodyStatu">
+    update tb_family_shentizhuangkuang
+    <set>
+      <if test="shentizhuangkuangName != null">
+        shentizhuangkuang_name = #{shentizhuangkuangName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where shentizhuangkuang_id = #{shentizhuangkuangId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xsw.prj.po.BodyStatu">
+    update tb_family_shentizhuangkuang
+    set shentizhuangkuang_name = #{shentizhuangkuangName,jdbcType=VARCHAR}
+    where shentizhuangkuang_id = #{shentizhuangkuangId,jdbcType=VARCHAR}
+  </update>
+</mapper>

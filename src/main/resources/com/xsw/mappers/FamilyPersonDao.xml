@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsw.prj.dao.FamilyPersonDao">
+  <resultMap id="BaseResultMap" type="com.xsw.prj.po.FamilyPerson">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="person_id" jdbcType="VARCHAR" property="personId" />
+    <result column="family_id" jdbcType="VARCHAR" property="familyId" />
+    <result column="person_name" jdbcType="VARCHAR" property="personName" />
+    <result column="xingbie" jdbcType="VARCHAR" property="xingbie" />
+    <result column="sfz" jdbcType="VARCHAR" property="sfz" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="hujileixing" jdbcType="VARCHAR" property="hujileixing" />
+    <result column="huzhuguanxi_id" jdbcType="VARCHAR" property="huzhuguanxiId" />
+    <result column="shentizhuangkuang_id" jdbcType="VARCHAR" property="shentizhuangkuangId" />
+    <result column="wenhuachengdu_id" jdbcType="VARCHAR" property="wenhuachengduId" />
+    <result column="zhengzhimianmiao_id" jdbcType="VARCHAR" property="zhengzhimianmiaoId" />
+    <result column="hunyinzhuangkuang_id" jdbcType="VARCHAR" property="hunyinzhuangkuangId" />
+    <result column="congyeqingkuang" jdbcType="VARCHAR" property="congyeqingkuang" />
+    <result column="is_dibao" jdbcType="INTEGER" property="isDibao" />
+    <result column="is_shanyang" jdbcType="INTEGER" property="isShanyang" />
+    <result column="isDeleted" jdbcType="INTEGER" property="isdeleted" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="modify_user_id" jdbcType="VARCHAR" property="modifyUserId" />
+    <result column="modify_user_name" jdbcType="VARCHAR" property="modifyUserName" />
+    <result column="modidfy_date" jdbcType="TIMESTAMP" property="modidfyDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, person_id, family_id, person_name, xingbie, sfz, phone, hujileixing, huzhuguanxi_id, 
+    shentizhuangkuang_id, wenhuachengdu_id, zhengzhimianmiao_id, hunyinzhuangkuang_id, 
+    congyeqingkuang, is_dibao, is_shanyang, isDeleted, create_date, create_user_id, create_user_name, 
+    modify_user_id, modify_user_name, modidfy_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_family_person
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_family_person
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xsw.prj.po.FamilyPerson">
+    insert into tb_family_person (id, person_id, family_id, 
+      person_name, xingbie, sfz, 
+      phone, hujileixing, huzhuguanxi_id, 
+      shentizhuangkuang_id, wenhuachengdu_id, zhengzhimianmiao_id, 
+      hunyinzhuangkuang_id, congyeqingkuang, is_dibao, 
+      is_shanyang, isDeleted, create_date, 
+      create_user_id, create_user_name, modify_user_id, 
+      modify_user_name, modidfy_date)
+    values (#{id,jdbcType=INTEGER}, #{personId,jdbcType=VARCHAR}, #{familyId,jdbcType=VARCHAR}, 
+      #{personName,jdbcType=VARCHAR}, #{xingbie,jdbcType=VARCHAR}, #{sfz,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{hujileixing,jdbcType=VARCHAR}, #{huzhuguanxiId,jdbcType=VARCHAR}, 
+      #{shentizhuangkuangId,jdbcType=VARCHAR}, #{wenhuachengduId,jdbcType=VARCHAR}, #{zhengzhimianmiaoId,jdbcType=VARCHAR}, 
+      #{hunyinzhuangkuangId,jdbcType=VARCHAR}, #{congyeqingkuang,jdbcType=VARCHAR}, #{isDibao,jdbcType=INTEGER}, 
+      #{isShanyang,jdbcType=INTEGER}, #{isdeleted,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{createUserId,jdbcType=VARCHAR}, #{createUserName,jdbcType=VARCHAR}, #{modifyUserId,jdbcType=VARCHAR}, 
+      #{modifyUserName,jdbcType=VARCHAR}, #{modidfyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xsw.prj.po.FamilyPerson">
+    insert into tb_family_person
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="personId != null">
+        person_id,
+      </if>
+      <if test="familyId != null">
+        family_id,
+      </if>
+      <if test="personName != null">
+        person_name,
+      </if>
+      <if test="xingbie != null">
+        xingbie,
+      </if>
+      <if test="sfz != null">
+        sfz,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="hujileixing != null">
+        hujileixing,
+      </if>
+      <if test="huzhuguanxiId != null">
+        huzhuguanxi_id,
+      </if>
+      <if test="shentizhuangkuangId != null">
+        shentizhuangkuang_id,
+      </if>
+      <if test="wenhuachengduId != null">
+        wenhuachengdu_id,
+      </if>
+      <if test="zhengzhimianmiaoId != null">
+        zhengzhimianmiao_id,
+      </if>
+      <if test="hunyinzhuangkuangId != null">
+        hunyinzhuangkuang_id,
+      </if>
+      <if test="congyeqingkuang != null">
+        congyeqingkuang,
+      </if>
+      <if test="isDibao != null">
+        is_dibao,
+      </if>
+      <if test="isShanyang != null">
+        is_shanyang,
+      </if>
+      <if test="isdeleted != null">
+        isDeleted,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null">
+        modify_user_name,
+      </if>
+      <if test="modidfyDate != null">
+        modidfy_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="personId != null">
+        #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="familyId != null">
+        #{familyId,jdbcType=VARCHAR},
+      </if>
+      <if test="personName != null">
+        #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="xingbie != null">
+        #{xingbie,jdbcType=VARCHAR},
+      </if>
+      <if test="sfz != null">
+        #{sfz,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="hujileixing != null">
+        #{hujileixing,jdbcType=VARCHAR},
+      </if>
+      <if test="huzhuguanxiId != null">
+        #{huzhuguanxiId,jdbcType=VARCHAR},
+      </if>
+      <if test="shentizhuangkuangId != null">
+        #{shentizhuangkuangId,jdbcType=VARCHAR},
+      </if>
+      <if test="wenhuachengduId != null">
+        #{wenhuachengduId,jdbcType=VARCHAR},
+      </if>
+      <if test="zhengzhimianmiaoId != null">
+        #{zhengzhimianmiaoId,jdbcType=VARCHAR},
+      </if>
+      <if test="hunyinzhuangkuangId != null">
+        #{hunyinzhuangkuangId,jdbcType=VARCHAR},
+      </if>
+      <if test="congyeqingkuang != null">
+        #{congyeqingkuang,jdbcType=VARCHAR},
+      </if>
+      <if test="isDibao != null">
+        #{isDibao,jdbcType=INTEGER},
+      </if>
+      <if test="isShanyang != null">
+        #{isShanyang,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserId != null">
+        #{modifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserName != null">
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modidfyDate != null">
+        #{modidfyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xsw.prj.po.FamilyPerson">
+    update tb_family_person
+    <set>
+      <if test="personId != null">
+        person_id = #{personId,jdbcType=VARCHAR},
+      </if>
+      <if test="familyId != null">
+        family_id = #{familyId,jdbcType=VARCHAR},
+      </if>
+      <if test="personName != null">
+        person_name = #{personName,jdbcType=VARCHAR},
+      </if>
+      <if test="xingbie != null">
+        xingbie = #{xingbie,jdbcType=VARCHAR},
+      </if>
+      <if test="sfz != null">
+        sfz = #{sfz,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="hujileixing != null">
+        hujileixing = #{hujileixing,jdbcType=VARCHAR},
+      </if>
+      <if test="huzhuguanxiId != null">
+        huzhuguanxi_id = #{huzhuguanxiId,jdbcType=VARCHAR},
+      </if>
+      <if test="shentizhuangkuangId != null">
+        shentizhuangkuang_id = #{shentizhuangkuangId,jdbcType=VARCHAR},
+      </if>
+      <if test="wenhuachengduId != null">
+        wenhuachengdu_id = #{wenhuachengduId,jdbcType=VARCHAR},
+      </if>
+      <if test="zhengzhimianmiaoId != null">
+        zhengzhimianmiao_id = #{zhengzhimianmiaoId,jdbcType=VARCHAR},
+      </if>
+      <if test="hunyinzhuangkuangId != null">
+        hunyinzhuangkuang_id = #{hunyinzhuangkuangId,jdbcType=VARCHAR},
+      </if>
+      <if test="congyeqingkuang != null">
+        congyeqingkuang = #{congyeqingkuang,jdbcType=VARCHAR},
+      </if>
+      <if test="isDibao != null">
+        is_dibao = #{isDibao,jdbcType=INTEGER},
+      </if>
+      <if test="isShanyang != null">
+        is_shanyang = #{isShanyang,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null">
+        isDeleted = #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserName != null">
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modidfyDate != null">
+        modidfy_date = #{modidfyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xsw.prj.po.FamilyPerson">
+    update tb_family_person
+    set person_id = #{personId,jdbcType=VARCHAR},
+      family_id = #{familyId,jdbcType=VARCHAR},
+      person_name = #{personName,jdbcType=VARCHAR},
+      xingbie = #{xingbie,jdbcType=VARCHAR},
+      sfz = #{sfz,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      hujileixing = #{hujileixing,jdbcType=VARCHAR},
+      huzhuguanxi_id = #{huzhuguanxiId,jdbcType=VARCHAR},
+      shentizhuangkuang_id = #{shentizhuangkuangId,jdbcType=VARCHAR},
+      wenhuachengdu_id = #{wenhuachengduId,jdbcType=VARCHAR},
+      zhengzhimianmiao_id = #{zhengzhimianmiaoId,jdbcType=VARCHAR},
+      hunyinzhuangkuang_id = #{hunyinzhuangkuangId,jdbcType=VARCHAR},
+      congyeqingkuang = #{congyeqingkuang,jdbcType=VARCHAR},
+      is_dibao = #{isDibao,jdbcType=INTEGER},
+      is_shanyang = #{isShanyang,jdbcType=INTEGER},
+      isDeleted = #{isdeleted,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      modify_user_id = #{modifyUserId,jdbcType=VARCHAR},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modidfy_date = #{modidfyDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

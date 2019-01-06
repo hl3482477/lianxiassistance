@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <title>城市低保</title>
+    <style>
+        .form-group{
+            padding: 0 30px;
+        }
+        .submit{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<!--增加-->
+<div class="modal fade" id="dibaoadd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px;">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    城市低保信息录入
+                </h4>
+            </div>
+            <div class="modal-body" style="height: 510px;">
+                <iframe src="family_dibao_city_add.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="dibaoAddCtrl">
+                    保存
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--修改-->
+<div class="modal fade" id="dibaorevise" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" style="width: 700px;">
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="">
+                    城市低保信息修改
+                </h4>
+            </div>
+            <div class="modal-body" style="height: 510px;">
+                <iframe src="family_dibao_city_revise.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="dibaoreviseCtrl">
+                    保存
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--删除-->
+<div class="modal fade" id="deletedibao" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">删除城市低保信息</h4>
+            </div>
+            <div class="modal-body">确定要删除已勾选的内容？</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal"  id="dibaoDeleteCtrl">
+                    确定
+                </button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-hover table-bordered" id="dibaoTable">
+            <thead>
+            <tr>
+                <th colspan="6" style="background-color: #f5f5f5">
+                    <form class="form-inline" role="form">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="">查询方式：</label>
+                                    <select class="form-control">
+                                        <option>11111</option>
+                                        <option>21111</option>
+                                        <option>31111</option>
+                                        <option>41111</option>
+                                        <option>51111</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="">所在单位：</label>
+                                    <select class="form-control">
+                                        <option>11111</option>
+                                        <option>21111</option>
+                                        <option>31111</option>
+                                        <option>41111</option>
+                                        <option>51111</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="">状态：</label>
+                                    <select class="form-control">
+                                        <option>11111</option>
+                                        <option>21111</option>
+                                        <option>31111</option>
+                                        <option>41111</option>
+                                        <option>51111</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-3" style="">
+                           <!--     <div class="form-group">
+                                    <label class="sr-only" for="name">姓名：</label>
+                                    <input type="text" class="form-control"  name="username" id="name" placeholder="请输入姓名">
+                                </div>-->
+                                <div class="input-group">
+                                    <input type="text" class="form-control"  name="username" id="name" placeholder="请输入姓名">
+                                    <span class="input-group-addon submit"  id="submit">查询</span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr style="background-color: #f5f5f5">
+                <td colspan="5" style="font-size: 18px;line-height: 33px;font-weight: bold">城市低保信息列表</td>
+                <td>
+                    <button class="btn btn-success"  data-toggle="modal" data-target="#dibaoadd">添加低保信息</button>
+                </td>
+  <!--              <td><button class="btn btn-warning">修改</button></td>
+                <td><button class="btn btn-danger" data-toggle="modal" data-target="#deletedibao">删除</button></td>-->
+            </tr>
+            <tr style="background-color: #f5f5f5;font-weight: bold">
+                <td>所在单位</td>
+                <td>姓名</td>
+                <td>家庭人口</td>
+                <td>家庭地址</td>
+                <td>保障人数</td>
+                <td>
+                    操作
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="checkbox-inline-item">
+                        <input type="checkbox" name="checkboxitem" value="option">某某单位1
+                    </label>
+                </td>
+                <td>a</td>
+                <td>b</td>
+                <td>c</td>
+                <td>d</td>
+                <td>
+                    <button class="btn btn-warning " data-toggle="modal" data-target="#dibaorevise">修改</button>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#deletedibao">删除</button>
+               <!--     <i class="glyphicon glyphicon-cog"></i>
+                    <i class="glyphicon glyphicon-trash"></i>-->
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="checkbox-inline-item">
+                        <input type="checkbox" name="checkboxitem" value="option">某某单位2
+                    </label>
+                </td>
+                <td>e</td>
+                <td>f</td>
+                <td>g</td>
+                <td>h</td>
+                <td>
+                    <button class="btn btn-warning " data-toggle="modal" data-target="#dibaorevise">修改</button>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#deletedibao">删除</button>
+                    <!--     <i class="glyphicon glyphicon-cog"></i>
+                         <i class="glyphicon glyphicon-trash"></i>-->
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="checkbox-inline-item">
+                        <input type="checkbox" name="checkboxitem" value="option">某某单位3
+                    </label>
+                </td>
+                <td>i</td>
+                <td>j</td>
+                <td>k</td>
+                <td>l</td>
+                <td>
+                    <button class="btn btn-warning " data-toggle="modal" data-target="#dibaorevise">修改</button>
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#deletedibao">删除</button>
+                    <!--     <i class="glyphicon glyphicon-cog"></i>
+                         <i class="glyphicon glyphicon-trash"></i>-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+    //删除低保信息列
+/*    function deletedibao() {
+        $('input[name="item"]:checked').each(function () {
+            $(this).parent().parent().parent().remove();
+        })
+    }*/
+    //全选/全不选
+/*    $(function () {
+        $('#allchecked').click(function () {
+            if ($("input[name='all']").is(':checked')) {
+                $("input[type='checkbox']").prop('checked', true);
+            }
+            else {
+                $("input[type='checkbox']").prop('checked', false);
+            }
+        });*/
+
+        //点击保存后动态创建tr
+/*        $('#dibaoAddCtrl').click(function () {
+            var count=0;
+            ++count;
+            $("#dibaoTable").append(
+                '<tr>'
+                +'<td>'+'<label class="checkbox-inline-item">'+'<input type="checkbox" name="checkboxitem" value="option">'+'选项'+count+'</label>'
+                +'</td>'+'<td>'+$("#company").val()+'</td>'
+                +'</td>'+'<td>'+$("input[name=username]").val()+'</td>'
+                +'</td>'+'<td>'+$("input[name=familynumber]").val()+'</td>'
+                +'</td>'+'<td>'+$("input[name=familyplace]").val()+'</td>'
+                +'</td>'+'<td>'+$("input[name=peoplenumber]").val()+'</td>'
+                +'</tr>'
+            )
+        });*/
+ /*       $(function () {
+            $(".checkbox-inline-item").off().on("click",function () {
+                var len=$("input[name=checkboxitem]:checked").length;
+                var chk=[];
+                for(var i=0;i<len;i++){
+                    var obj=$("input[name=checkboxitem]:checked")[i];
+                    var lab=obj.labels;
+                    var labContent=lab[0].textContent;
+                    chk.push(lab[0].textContent);
+                }
+                //alert(5)
+                $("#TableContentCount").html("共选中："+(len)+"条信息");
+            })
+        });
+    })*/
+</script>
+</body>
+</html>

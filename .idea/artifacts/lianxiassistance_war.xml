@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="lianxiassistance:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <root id="archive" name="lianxiassistance.war">
+      <element id="artifact" artifact-name="lianxiassistance:war exploded" />
+    </root>
+  </artifact>
+</component>

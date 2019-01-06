@@ -1,0 +1,93 @@
+#topNav{
+
+}
+.topnavtit{
+    background: #23262E;
+/*    color: #009688;*/
+   color: #009688;
+    font-size: 25px;
+    border: 1px solid #515465;
+    padding: 20px 0;
+    overflow: hidden;
+}
+.topnavtit span{
+    padding-left: 20px;
+}
+.topNavMsg{
+    margin-top: 2px;
+    margin-bottom: 2px;
+    background: #3b4249;
+    border: 1px solid #555e65;
+    -moz-box-shadow:  0 0  5px #252634;
+    color: #cfcfcf;
+    box-shadow: 0 0  5px #252634;
+    overflow: hidden;
+}
+.topNavMsg span{
+    cursor: pointer;
+    overflow: hidden;
+}
+.breadcrumb > li + li:before {
+    color: #252634;
+    content: "-- ";
+    padding: 0 5px;
+}
+#leftNavList{
+
+/*    background: #3b4249;
+    border: 1px solid #555e65;
+    box-shadow: 0 0  5px #252634;
+    -moz-box-shadow:  0 0  5px #252634;*/
+    height: 36px;
+
+}
+#leftNavList span{
+    font-size: 18px;
+    color: #555e65;
+    line-height: 36px;
+    position: relative;
+}
+#leftNavList span a{
+    display: inline-block;
+    width: 5px;
+    height: 100%;
+    background: #009688;
+}
+#leftNavList span strong{
+    display: inline-block;
+    width: 100px;
+    height: 36px;
+    position: absolute;
+    top: -20px;
+    left: 18px;
+}
+.line{
+
+}
+#navbarmap li a{
+    color: #555e65;
+}
+#navbarmap li a:hover{
+    text-decoration: none;
+}
+#leftNavBar li a:hover{
+    text-decoration: none;
+}
+#contentWrap{
+    /*background: #7b8773;*/
+   /* background-color: #181c35;*/
+/*    background-color: #172349;*/
+/*    background-color: #3c3255;*/
+}
+.nav-header{
+    cursor: pointer;
+}
+#footer{
+    padding: 5px 0;
+    background: #3b4249;
+    border: 1px solid #555e65;
+    -moz-box-shadow: 0 0 5px #252634;
+    color: #cfcfcf;
+    box-shadow: 0 0 5px #252634;
+    overflow: hidden;
+}

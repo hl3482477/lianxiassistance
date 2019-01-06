@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsw.prj.dao.MarryRelationDao">
+  <resultMap id="BaseResultMap" type="com.xsw.prj.po.MarryRelation">
+    <id column="huzhuguanxi_id" jdbcType="VARCHAR" property="huzhuguanxiId" />
+    <result column="guanxi_name" jdbcType="VARCHAR" property="guanxiName" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    huzhuguanxi_id, guanxi_name, memo
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_family_huzhuguanxi
+    where huzhuguanxi_id = #{huzhuguanxiId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_family_huzhuguanxi
+    where huzhuguanxi_id = #{huzhuguanxiId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xsw.prj.po.MarryRelation">
+    insert into tb_family_huzhuguanxi (huzhuguanxi_id, guanxi_name, memo
+      )
+    values (#{huzhuguanxiId,jdbcType=VARCHAR}, #{guanxiName,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xsw.prj.po.MarryRelation">
+    insert into tb_family_huzhuguanxi
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="huzhuguanxiId != null">
+        huzhuguanxi_id,
+      </if>
+      <if test="guanxiName != null">
+        guanxi_name,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="huzhuguanxiId != null">
+        #{huzhuguanxiId,jdbcType=VARCHAR},
+      </if>
+      <if test="guanxiName != null">
+        #{guanxiName,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xsw.prj.po.MarryRelation">
+    update tb_family_huzhuguanxi
+    <set>
+      <if test="guanxiName != null">
+        guanxi_name = #{guanxiName,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where huzhuguanxi_id = #{huzhuguanxiId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xsw.prj.po.MarryRelation">
+    update tb_family_huzhuguanxi
+    set guanxi_name = #{guanxiName,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR}
+    where huzhuguanxi_id = #{huzhuguanxiId,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href="design/css/layui.css" rel="stylesheet" media="all">
+  <script src="design/layui.js" charset="utf-8"></script>
+  <script src="../Themes/Scripts/FunctionJS.js" type="text/javascript"></script>
+  <script src="../Themes/Scripts/jquery-1.8.2.min.js"></script>
+<title>组织机构</title>
+
+</head>
+<body class="layui-layout-body" style="padding: 10px">
+  <div class="demoTable"  style="margin-top: 5px;">
+  关键词:
+  <div class="layui-inline">
+    <input class="layui-input" name="txtKeyword" id="txtKeyword" autocomplete="off">
+  </div>
+  <div class="layui-input-inline">
+       <input class="layui-input" name="id2" id="demoReload2" autocomplete="off">
+      </div>
+  <button id="btnQuery"   class="layui-btn" data-type="reload">搜索</button>
+  
+  <button id="btnAdd"  onclick="goAdd();"class="layui-btn" data-type="reload">+新增</button>
+</div>
+</fieldset>
+
+  <div class="dBody">
+    <table class="layui-hidden" id="treeTable" lay-filter="treeTable"></table>
+  </div>
+
+<script>
+    var editObj=null,ptable=null,treeGrid=null,tableId='treeTable',layer=null;
+    layui.config({
+        base: 'design/extend/'
+    }).extend({
+        treeGrid:'treeGrid'
+    }).use(['jquery','treeGrid','layer'], function(){
+        var $=layui.jquery;
+        treeGrid = layui.treeGrid;//很重要
+        layer=layui.layer;
+        ptable=treeGrid.render({
+            id:tableId
+            ,elem: '#'+tableId
+            ,url:'json/treeData.json'
+            ,cellMinWidth: 100
+            ,idField:'orgCode'//必須字段
+            ,treeId:'orgCode'//树形id字段名称
+            ,treeUpId:'parentId'//树形父id字段名称
+            ,treeShowName:'orgName'//以树形式显示的字段
+            ,heightRemove:[".dHead",10]//不计算的高度,表格设定的是固定高度，此项不生效
+            ,height:'100%'
+            ,isFilter:false
+            ,iconOpen:true//是否显示图标【默认显示】
+            ,isOpenDefault:true//节点默认是展开还是折叠【默认展开】
+            ,loading:true
+            ,method:'post'
+            ,isPage:false
+            ,cols: [[
+                {type:'numbers'}
+                    //,{type:'radio'}
+                    //,{type:'checkbox',sort:true}
+                ,{field:'orgName', width:300, title: '行政名称',edit:'text',sort:true}
+                ,{field:'orgCode',width:100, title: '行政代码',sort:true}
+                ,{field:'parentId', title: '所在行政',sort:true}
+                ,{width:100,title: '操作', align:'center'/*toolbar: '#barDemo'*/
+                    ,templet: function(d){
+                        var html='';
+                        var addBtn='<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="add">添加</a>';
+                        var delBtn='<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>';
+                        return addBtn+delBtn;
+                    }
+                }
+            ]]
+            ,parseData:function (res) {//数据加载后回调
+                return res;
+            }
+            ,onClickRow:function (index, o) {
+                console.log(index,o,"单击！");
+            }
+            ,onDblClickRow:function (index, o) {
+                console.log(index,o,"双击");
+            }
+        });
+
+        treeGrid.on('tool('+tableId+')',function (obj) {
+            if(obj.event === 'del'){//删除行
+                del(obj);
+            }else if(obj.event==="add"){//添加行
+                add(obj);
+            }
+        });
+    });
+
+    function del(obj) {
+        layer.confirm("你确定删除数据吗？如果存在下级节点则一并删除，此操作不能撤销！", {icon: 3, title:'提示'},
+            function(index){//确定回调
+                obj.del();
+                layer.close(index);
+            },function (index) {//取消回调
+                layer.close(index);
+            }
+        );
+    }
+
+
+    var i=1000000;
+    //添加
+    function add(pObj) {
+        var pdata=pObj?pObj.data:null;
+        var param={};
+        param.name='水果'+Math.random();
+        param.id=++i;
+        param.pId=pdata?pdata.id:null;
+        treeGrid.addRow(tableId,pdata?pdata[treeGrid.config.indexName]+1:0,param);
+    }
+ 
+</script>
+</body>
+</html>

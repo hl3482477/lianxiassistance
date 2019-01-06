@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="css/gm.css">
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/gm.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="layui/layui.js"  media="all"></script>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <title>菜单信息</title>
+    <style>
+
+        html, body{
+            width: 100%;
+            height: 100%;
+            overflow-x:hidden;
+            margin: 0px;
+            padding: 0px;
+        }
+
+    </style>
+</head>
+
+<body>
+<form action="#" method="get" name="form1" id="form1" style="display: none;">
+    <!--获取浏览器的宽高，不能注释-->
+    浏览器窗口 的 实际高度: <input type="text" name="availHeight" size="4"><br>
+    浏览器窗口 的 实际宽度: <input type="text" name="availWidth" size="4"><br>
+</form>
+<div class="dialog-demo">
+    <form class="form-inline" role="form">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <label class="">所在模块：</label>
+                    <select class="form-control">
+                        <option>11111</option>
+                        <option>21111</option>
+                        <option>31111</option>
+                        <option>41111</option>
+                        <option>51111</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="col-sm-3 col-md-offset-6" style="">
+                <!--     <div class="form-group">
+                         <label class="sr-only" for="name">姓名：</label>
+                         <input type="text" class="form-control"  name="username" id="name" placeholder="请输入姓名">
+                     </div>-->
+                <div class="input-group">
+                    <input type="text" class="form-control"  name="username" id="name" placeholder="请输入姓名">
+                    <span class="input-group-addon submit"  id="submit" style="cursor: pointer">查询</span>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-sm-6">
+            <h4 style="margin-top: 20px;"> 菜单信息列表</h4>
+        </div>
+        <div class="col-sm-6 site-demo-button" id="layerDemo" style="text-align: right">
+            <button class="btn btn-primary" data-method="setTop" style="margin-top: 20px;">新增信息</button>
+        </div>
+    </div>
+
+
+    <table grid-manager="demoOne">
+
+    </table>
+</div>
+<script type="text/javascript" >
+    $('table').GM({
+        supportRemind: true
+        ,gridManagerName: 'test'
+//			,disableCache:true
+        ,height: '370px'
+        ,supportAjaxPage:true
+        ,supportSorting: true
+        ,ajax_data: 'http://www.lovejavascript.com/learnLinkManager/getLearnLinkList'
+        /*  ,ajax_data:'package.json'*/
+        ,ajax_type: 'POST'
+        ,query: {pluginId: 1}
+        ,pageSize:20
+        ,columnData: [{
+            key: 'name',
+            /*remind: 'the name',*/
+            width: '100px',
+            text: '名称',
+            sorting: 'DESC'
+        },
+            {
+                key: 'code',
+                /*remind: 'the name',*/
+                width: '100px',
+                text: '模块代码',
+                sorting: 'DESC'
+            },
+            {
+                key: 'info',
+                /* remind: 'the info',*/
+                text: '模块类型',
+                sorting: ''
+            },{
+                key: 'url',
+                /*  remind: 'the url',*/
+                text: '目的地址'
+            },{
+                key: 'createDate',
+                /*remind: 'the createDate',*/
+                text: '创建时间',
+                template: function(createDate, rowObject){
+                    return new Date(createDate).format('YYYY-MM-DD HH:mm:ss');
+                }
+            },
+            {
+                key: 'createPeople',
+                /*remind: 'the createDate',*/
+                text: '创建人',
+                template: function(createDate, rowObject){
+                    return new Date(createDate).format('YYYY-MM-DD HH:mm:ss');
+                }
+            },
+            {
+                key: 'lastDate',
+                /*    remind: 'the lastDate',*/
+                text: '最后修改时间',
+                template: function(lastDate, rowObject){
+                    return new Date(lastDate).format('YYYY-MM-DD HH:mm:ss');
+                }
+            },
+            {
+                key: 'revisePeople',
+                /*remind: 'the createDate',*/
+                text: '修改人',
+                template: function(createDate, rowObject){
+                    return new Date(createDate).format('YYYY-MM-DD HH:mm:ss');
+                }
+            },
+            {
+                key: 'action',
+                /*   remind: 'the action',*/
+                text: '操作',
+                template: function(action, rowObject){
+                    return '<span onclick="valueText()" style="cursor: pointer" class="layui-btn layui-btn-info layui-btn-xs plugin-action edit-action" learnLink-id="'+rowObject.id+'">修改</span>'
+                        +'<span onclick="deleteValue()" style="cursor: pointer;" class="layui-btn layui-btn-danger layui-btn-xs plugin-action del-action" learnLink-id="'+rowObject.id+'">删除</span>';
+                }
+            }
+        ]
+        // 分页前事件
+        ,pagingBefore: function(query){
+            console.log('pagingBefore', query);
+        }
+        // 分页后事件
+        ,pagingAfter: function(data){
+            console.log('pagingAfter', data);
+        }
+        // 排序前事件
+        ,sortingBefore: function (data) {
+            console.log('sortBefore', data);
+        }
+        // 排序后事件
+        ,sortingAfter: function (data) {
+            console.log('sortAfter', data);
+        }
+        // 宽度调整前事件
+        ,adjustBefore: function (event) {
+            console.log('adjustBefore', event);
+        }
+        // 宽度调整后事件
+        ,adjustAfter: function (event) {
+            console.log('adjustAfter', event);
+        }
+        // 拖拽前事件
+        ,dragBefore: function (event) {
+            console.log('dragBefore', event);
+        }
+        // 拖拽后事件
+        ,dragAfter: function (event) {
+            console.log('dragAfter', event);
+        }
+    });
+
+    // 日期格式化,不是插件的代码,只用于处理时间格式化
+    Date.prototype.format = function(fmt){
+        var o = {
+            "M+": this.getMonth() + 1, //月份
+            "D+": this.getDate(), //日
+            "d+": this.getDate(), //日
+            "H+": this.getHours(), //小时
+            "h+": this.getHours(), //小时
+            "m+": this.getMinutes(), //分
+            "s+": this.getSeconds(), //秒
+            "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+            "S": this.getMilliseconds() //毫秒
+        };
+        if (/([Y,y]+)/.test(fmt)){
+            fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        }
+        for (var k in o){
+            if(new RegExp("(" + k + ")").test(fmt)){
+                fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            }
+        }
+        return fmt;
+    }
+</script>
+<script type="text/javascript">
+
+    var winWidth = 0;
+    var winHeight = 0;
+    function findDimensions() //函数：获取尺寸
+    {
+        //获取窗口宽度
+        if (window.innerWidth)
+            winWidth = window.innerWidth;
+        else if ((document.body) && (document.body.clientWidth))
+            winWidth = document.body.clientWidth;
+        //获取窗口高度
+        if (window.innerHeight)
+            winHeight = window.innerHeight;
+        else if ((document.body) && (document.body.clientHeight))
+            winHeight = document.body.clientHeight;
+        //通过深入Document内部对body进行检测，获取窗口大小
+        if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth)
+        {
+            winHeight = document.documentElement.clientHeight;
+            winWidth = document.documentElement.clientWidth;
+        }
+        //结果输出至两个文本框
+        /*
+         document.form1.availHeight.value= winHeight;
+         */
+        document.form1.availWidth.value= winWidth;
+        $("input[name=availHeight]").val(winHeight);
+        var frameheight=Number(winHeight-113-32);
+        var table=Number(winHeight-88);
+        /*     $(".table-wrap").css({
+         "height":table,
+         "overflow":"auto",
+         });
+         $(".table-div").css({
+         "height":table,
+         "overflow":"auto",
+         });
+         $("html,body").css({
+         "height":frameheight,
+         "overflow":"auto",
+
+         });*/
+    }
+    findDimensions();
+    //调用函数，获取数值
+    window.onresize=findDimensions;
+</script>
+<script>
+    /*   function deleteValue(){
+     $(this).parent().parent().remove();
+     }
+     /!*  $(document).ready(function () {
+     $(".edit-action").click(function () {
+
+     })
+     })*!/
+     /!*function text() {
+     alert("修改")
+     }*!/
+     function valueText() {
+     /!*    var text=$(".GridManager-ready tbody tr").attr("cache-key");
+     if (text=='0'){
+     alert($(".GridManager-ready tbody tr").text)
+     }
+     else {
+     alert(5)
+     }*!/
+     var trvalue=$(this).parent().parent().text();
+     /!* alert(trvalue);*!/
+     }
+     $(".edit-action").click(function () {
+     alert(5)
+     });*/
+    $(function () {
+        $("body").on('click','.edit-action',function(){
+            var thisval=$(this).parent().parent().text();
+            alert(thisval)
+        });
+        $("body").on('click','.del-action',function(){
+            $(this).parent().parent().remove();
+        });
+
+    })
+</script>
+<script>
+    layui.use('layer', function(){ //独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+
+        //触发事件
+        var active = {
+            setTop: function(){
+                var that = this;
+                //多窗口模式，层叠置顶
+                layer.open({
+                    type: 2 //此处以iframe举例
+                    ,title: '模块信息录入'
+                    ,area: ['700px', '480px']
+                    ,shade: 0
+                    ,maxmin: true
+                    /*,offset: [ //为了演示，随机坐标
+                        Math.random()*($(window).height()-300)
+                        ,Math.random()*($(window).width()-390)
+                    ]*/
+                    ,offset:'10px'
+                    ,content: 'Menu information add.html'
+                    ,btn: ['保存', '关闭'] //只是为了演示
+                /*    ,yes: function(){
+                        $(that).click();
+                    }*/
+                //yes之后是layui默认js，如果解除注释，点击保存会触发原来的js效果，也就是点击一次再弹窗一个
+                    ,btn2: function(){
+                        layer.closeAll();
+                    }
+
+                    ,zIndex: layer.zIndex //重点1
+                    ,success: function(layero){
+                        layer.setTop(layero); //重点2
+                    }
+                });
+            }
+            ,confirmTrans: function(){
+                //配置一个透明的询问框
+                layer.msg('大部分参数都是可以公用的<br>合理搭配，展示不一样的风格', {
+                    time: 20000, //20s后自动关闭
+                    btn: ['明白了', '知道了', '哦']
+                });
+            }
+        };
+
+        $('#layerDemo .btn-primary').on('click', function(){
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("body").on('click','.layui-layer-btn0',function(){
+            alert("获取该按钮元素的js方法在Menu information.html最底部，以后提交表单写函数可参照这种js的写法")
+        });
+    })
+</script>
+</body>
+</html>

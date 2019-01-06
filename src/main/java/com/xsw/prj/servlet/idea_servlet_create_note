@@ -1,0 +1,11 @@
+使用idea创建servlet
+需要配置servlet
+推荐使用注解@WebServlet(name = "***Servlet",urlPatterns = {"/****Servlet"})
+
+
+ * 如果出现404找不到Servlet，应该是没有配置servlet
+ * 需要在类名前面加入注解    @WebServlet(name = "***Servlet",urlPatterns = {"/****Servlet"})
+ *
+ * 例如：
+ @WebServlet(name = "RecycleServlet",urlPatterns = {"/RecycleServlet"})
+ public class RecycleServlet extends HttpServlet {

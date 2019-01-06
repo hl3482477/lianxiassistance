@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsw.prj.dao.RoleDao">
+
+  <select id="getCount"   parameterType="map" resultType="java.lang.Integer">
+    select count(1) from tb_role
+    WHERE 1 = 1
+    <include refid=""></include>
+  </select>
+
+  <sql id="Limit_Column_List">
+    <if test="role_id !=null and role_id !='' ">
+      and role_id = #{role_id}
+    </if>
+    <if test="role_code !=null and role_code !='' ">
+      and role_code = #{role_code}
+    </if>
+    <if test="role_name !=null and role_name !='' ">
+      and role_name = #{role_name}
+    </if>
+
+    <if test="keyword !=null and keyword !='' ">
+      and ( role_id LIKE '%${keyword}%' or  role_code LIKE '%${keyword}%' or role_name LIKE '%${keyword}%' )
+    </if>
+  </sql>
+
+  <select id="getAllByPage" parameterType="map" resultMap="BaseResultMap">
+
+    select * from tb_role
+    WHERE 1 = 1
+    <if test="role_id !=null and role_id !='' ">
+      and role_id = #{role_id}
+    </if>
+    <if test="role_code !=null and role_code !='' ">
+      and role_code = #{role_code}
+    </if>
+    <if test="role_name !=null and role_name !='' ">
+      and role_name = #{role_name}
+    </if>
+
+    <if test="keyword !=null and keyword !='' ">
+      and ( role_id LIKE '%${keyword}%' or  role_code LIKE '%${keyword}%' or role_name LIKE '%${keyword}%' )
+    </if>
+    limit #{startIndex} , #{limit}
+  </select>
+
+  <resultMap id="BaseResultMap" type="com.xsw.prj.po.Role">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="role_id" jdbcType="VARCHAR" property="roleId" />
+    <result column="role_code" jdbcType="VARCHAR" property="roleCode" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="role_level" jdbcType="INTEGER" property="roleLevel" />
+    <result column="isDeleted" jdbcType="INTEGER" property="isdeleted" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="create_user_id" jdbcType="VARCHAR" property="createUserId" />
+    <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+    <result column="modify_user_id" jdbcType="VARCHAR" property="modifyUserId" />
+    <result column="modify_user_name" jdbcType="VARCHAR" property="modifyUserName" />
+    <result column="modidfy_date" jdbcType="TIMESTAMP" property="modidfyDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, role_id, role_code, role_name, memo, role_level, isDeleted, create_date, create_user_id, 
+    create_user_name, modify_user_id, modify_user_name, modidfy_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_role
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_role
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xsw.prj.po.Role">
+    insert into tb_role (id, role_id, role_code, 
+      role_name, memo, role_level, 
+      isDeleted, create_date, create_user_id, 
+      create_user_name, modify_user_id, modify_user_name, 
+      modidfy_date)
+    values (#{id,jdbcType=INTEGER}, #{roleId,jdbcType=VARCHAR}, #{roleCode,jdbcType=VARCHAR}, 
+      #{roleName,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{roleLevel,jdbcType=INTEGER}, 
+      #{isdeleted,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, 
+      #{createUserName,jdbcType=VARCHAR}, #{modifyUserId,jdbcType=VARCHAR}, #{modifyUserName,jdbcType=VARCHAR}, 
+      #{modidfyDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xsw.prj.po.Role">
+    insert into tb_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="roleCode != null">
+        role_code,
+      </if>
+      <if test="roleName != null">
+        role_name,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="roleLevel != null">
+        role_level,
+      </if>
+      <if test="isdeleted != null">
+        isDeleted,
+      </if>
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+      <if test="createUserName != null">
+        create_user_name,
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id,
+      </if>
+      <if test="modifyUserName != null">
+        modify_user_name,
+      </if>
+      <if test="modidfyDate != null">
+        modidfy_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCode != null">
+        #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="roleLevel != null">
+        #{roleLevel,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null">
+        #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserId != null">
+        #{modifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserName != null">
+        #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modidfyDate != null">
+        #{modidfyDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xsw.prj.po.Role">
+    update tb_role
+    <set>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCode != null">
+        role_code = #{roleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="roleName != null">
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="roleLevel != null">
+        role_level = #{roleLevel,jdbcType=INTEGER},
+      </if>
+      <if test="isdeleted != null">
+        isDeleted = #{isdeleted,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="createUserName != null">
+        create_user_name = #{createUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserId != null">
+        modify_user_id = #{modifyUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="modifyUserName != null">
+        modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      </if>
+      <if test="modidfyDate != null">
+        modidfy_date = #{modidfyDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xsw.prj.po.Role">
+    update tb_role
+    set role_id = #{roleId,jdbcType=VARCHAR},
+      role_code = #{roleCode,jdbcType=VARCHAR},
+      role_name = #{roleName,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      role_level = #{roleLevel,jdbcType=INTEGER},
+      isDeleted = #{isdeleted,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      create_user_name = #{createUserName,jdbcType=VARCHAR},
+      modify_user_id = #{modifyUserId,jdbcType=VARCHAR},
+      modify_user_name = #{modifyUserName,jdbcType=VARCHAR},
+      modidfy_date = #{modidfyDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

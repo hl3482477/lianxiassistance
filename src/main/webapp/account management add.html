@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>角色信息录入</title>
+    <link rel="stylesheet" type="text/css" href="css/gm.css">
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="js/gm.js"></script>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <script src="layui/layui.js"></script>
+    <style>
+        .file:hover{
+            cursor: pointer;
+        }
+        #fatherMenu:hover{
+            cursor: pointer;
+        }
+        #demo2 img{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div class="panel panel-default">
+    <!--    <div class="panel-heading">
+            <h4 class="modal-title" id="tit" style="font-weight: bold">
+                城市低保信息录入
+            </h4>
+        </div>-->
+    <div class="panel-body">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr>
+                <th style="line-height: 34px;font-weight: normal">所属辖区</th>
+                <th colspan="3">
+                    <select class="form-control" id="">
+                        <option>11111</option>
+                        <option>21111</option>
+                        <option>31111</option>
+                        <option>41111</option>
+                        <option>51111</option>
+                    </select>
+
+                </th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td style="line-height: 34px;font-weight: normal">真实名字</td>
+                <td colspan="3">
+                    <input type="text" class="form-control" placeholder="请输入真实名字">
+                </td>
+            </tr>
+            <tr>
+                <td style="line-height: 34px;font-weight: normal">账号代码</td>
+                <td colspan="3">
+                    <input type="text" class="form-control" placeholder="请输入账号代码">
+                </td>
+            </tr>
+            <tr>
+                <td style="line-height: 34px;font-weight: normal">账号密码(<span style="cursor: pointer;" id="passwordCtrl">点我 显示 密码</span>)</td>
+                <td colspan="3">
+                    <input type="password" id="zhPassword" class="form-control" placeholder="请输入账号密码">
+                </td>
+                <script>
+                    $(function () {
+                        $("#passwordCtrl").click(function () {
+                            var passwordCtrlValue=$(this).html();
+                            //alert(passwordCtrlValue)
+                            if(passwordCtrlValue=='点我 显示 密码'){
+                                $('#zhPassword').attr("type","text");
+                                $(this).html('点我 隐藏 密码')
+                            }
+                            else if(passwordCtrlValue=='点我 隐藏 密码'){
+                                $('#zhPassword').attr("type","password");
+                                $(this).html('点我 显示 密码')
+                            }
+                        })
+                    })
+                </script>
+            </tr>
+            <tr>
+                <td style="line-height: 34px;font-weight: normal">角色</td>
+                <td colspan="3">
+                    <select class="form-control" id="">
+                        <option>11111</option>
+                        <option>21111</option>
+                        <option>31111</option>
+                        <option>41111</option>
+                        <option>51111</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td style="line-height: 65px">备注</td>
+                <td colspan="6"><textarea class="form-control" rows="3" placeholder="请输入需要添加的备注信息"></textarea></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

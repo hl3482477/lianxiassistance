@@ -1,0 +1,17 @@
+城市低保：family_dibao_city.html  城市低保信息录入family_dibao_city_add.html  城市低保信息修改family_dibao_city_revise.html
+业务申请：Business application
+农村低保   Rural minimum living standard
+特困供养   Poverty-stricken support
+临时救助   Temporary assistance
+业务申请   Business application
+业务审核  Business audit
+业务审批  Business approval
+业务查询    Business enquiry
+资金月发放表   Monthly release of funds
+资金月发放明细   Details of monthly issuance of funds
+菜单信息    Menu information
+操作按钮     Operation button
+角色管理   Role management
+组织结构   organization structure
+账号管理   account management
+密码管理    Password management

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link   href="../Themes/layui/css/layui.css"  rel="stylesheet"   media="all">
+  <script src="../Themes/layui/layui.js"           charset="utf-8"></script>
+  <script src="../Themes/Scripts/FunctionJS.js" type="text/javascript"></script>
+  <script src="../Themes/Scripts/jquery-1.8.2.min.js"></script>
+<title>组织结构信息录入</title>
+</head>
+<body>
+
+<form class="layui-form" action="">
+  <div class="layui-form-item">
+    <label class="layui-form-label">编码</label>
+    <div class="layui-input-inline">
+      <input type="hidden" id="action"  name="action" value="add" >
+       <input type="hidden" id="id"  name="id" value="0" >
+      <input type="text" id="org_code"  name="org_code" lay-verify="required" autocomplete="off" placeholder="请输入编码" class="layui-input">
+    </div>
+  </div>
+ <div class="layui-form-item">
+    <label class="layui-form-label">名称</label>
+    <div class="layui-input-inline">
+      <input type="text" id="org_name"  name="org_name" lay-verify="required" autocomplete="off" placeholder="请输入名称" class="layui-input">
+    </div>
+  </div>
+  
+ 
+ <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit="" lay-filter="btn_submit">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+
+</body>
+</html>
+<script>
+var url='/MyBatisServletWeb/OrgServlet';
+var id=getQueryString('id');
+if( id!=null) $('#id').val(id);
+
+var action=getQueryString('action');
+if( action!=null) $('#action').val(action);
+
+ 
+
+/****定义 layui.use *****/
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+
+  //自定义验证规则
+  form.verify({
+	org_code: function(value){
+      if(value.length <=0){
+        return '编码不能为空';
+      }
+    },
+    org_name: function(value){
+        if(value.length < 5){
+          return '名称不能为空';
+        }
+      }
+    
+  });
+  
+
+          /**
+            * 通用表单提交(AJAX方式)
+            */
+           form.on('submit(btn_submit)', function (data) {
+	          var   ss  = JSON.stringify(data.field);
+               $.ajax({
+                   url: url,
+                   type: 'POST',            
+                   data: $(data.form).serialize(),
+  				   dataType: "json",
+                   success: function (result) {
+                     //alert('get result:');
+  						showTipsMsg("保存成功！", 2000, 4);
+						top.main.loadData();
+						OpenClose();    
+                   }
+               });
+               return false;
+           });  
+});
+/****end   layui.use *****/
+ function  doQueryById(){
+	 var params="action=queryById&id="+id;
+	   $.ajax({
+		                   url: url,
+		                   type: 'POST',
+		                   data:params,
+		  				   dataType: "json",
+		                   success: function (result) {
+		  				    $('#org_code').val( result.data.org_code);
+		  				    $('#org_name').val( result.data.org_name);
+		  				   
+		  
+		         }
+	 });
+		            
+		       
+}
+
+ $(document).ready(function(){
+	 if(action=='update')
+		 doQueryById();
+	});
+ 
+
+</script>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsw.prj.dao.OrgFaceDao">
+  <resultMap id="BaseResultMap" type="com.xsw.prj.po.OrgFace">
+    <id column="zhengzhimianmiao_id" jdbcType="VARCHAR" property="zhengzhimianmiaoId" />
+    <result column="zhengzhimianmiao_name" jdbcType="VARCHAR" property="zhengzhimianmiaoName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    zhengzhimianmiao_id, zhengzhimianmiao_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_family_zhengzhimianmao
+    where zhengzhimianmiao_id = #{zhengzhimianmiaoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_family_zhengzhimianmao
+    where zhengzhimianmiao_id = #{zhengzhimianmiaoId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xsw.prj.po.OrgFace">
+    insert into tb_family_zhengzhimianmao (zhengzhimianmiao_id, zhengzhimianmiao_name
+      )
+    values (#{zhengzhimianmiaoId,jdbcType=VARCHAR}, #{zhengzhimianmiaoName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xsw.prj.po.OrgFace">
+    insert into tb_family_zhengzhimianmao
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="zhengzhimianmiaoId != null">
+        zhengzhimianmiao_id,
+      </if>
+      <if test="zhengzhimianmiaoName != null">
+        zhengzhimianmiao_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="zhengzhimianmiaoId != null">
+        #{zhengzhimianmiaoId,jdbcType=VARCHAR},
+      </if>
+      <if test="zhengzhimianmiaoName != null">
+        #{zhengzhimianmiaoName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xsw.prj.po.OrgFace">
+    update tb_family_zhengzhimianmao
+    <set>
+      <if test="zhengzhimianmiaoName != null">
+        zhengzhimianmiao_name = #{zhengzhimianmiaoName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where zhengzhimianmiao_id = #{zhengzhimianmiaoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xsw.prj.po.OrgFace">
+    update tb_family_zhengzhimianmao
+    set zhengzhimianmiao_name = #{zhengzhimianmiaoName,jdbcType=VARCHAR}
+    where zhengzhimianmiao_id = #{zhengzhimianmiaoId,jdbcType=VARCHAR}
+  </update>
+</mapper>

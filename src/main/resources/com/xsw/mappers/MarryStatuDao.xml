@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xsw.prj.dao.MarryStatuDao">
+  <resultMap id="BaseResultMap" type="com.xsw.prj.po.MarryStatu">
+    <id column="hunyinzhuangkuang_id" jdbcType="VARCHAR" property="hunyinzhuangkuangId" />
+    <result column="hunyinzhuangkuang_name" jdbcType="VARCHAR" property="hunyinzhuangkuangName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    hunyinzhuangkuang_id, hunyinzhuangkuang_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_family_hunyinzhuangkuang
+    where hunyinzhuangkuang_id = #{hunyinzhuangkuangId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_family_hunyinzhuangkuang
+    where hunyinzhuangkuang_id = #{hunyinzhuangkuangId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.xsw.prj.po.MarryStatu">
+    insert into tb_family_hunyinzhuangkuang (hunyinzhuangkuang_id, hunyinzhuangkuang_name
+      )
+    values (#{hunyinzhuangkuangId,jdbcType=VARCHAR}, #{hunyinzhuangkuangName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xsw.prj.po.MarryStatu">
+    insert into tb_family_hunyinzhuangkuang
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hunyinzhuangkuangId != null">
+        hunyinzhuangkuang_id,
+      </if>
+      <if test="hunyinzhuangkuangName != null">
+        hunyinzhuangkuang_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hunyinzhuangkuangId != null">
+        #{hunyinzhuangkuangId,jdbcType=VARCHAR},
+      </if>
+      <if test="hunyinzhuangkuangName != null">
+        #{hunyinzhuangkuangName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xsw.prj.po.MarryStatu">
+    update tb_family_hunyinzhuangkuang
+    <set>
+      <if test="hunyinzhuangkuangName != null">
+        hunyinzhuangkuang_name = #{hunyinzhuangkuangName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where hunyinzhuangkuang_id = #{hunyinzhuangkuangId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xsw.prj.po.MarryStatu">
+    update tb_family_hunyinzhuangkuang
+    set hunyinzhuangkuang_name = #{hunyinzhuangkuangName,jdbcType=VARCHAR}
+    where hunyinzhuangkuang_id = #{hunyinzhuangkuangId,jdbcType=VARCHAR}
+  </update>
+</mapper>

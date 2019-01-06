@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>九江市濂溪区社会救助管理系统</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="layui/css/layui.mobile.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="layui/layui.js"  media="all"></script>
+<!--
+    <script src="layui/layui.all.js"></script>
+-->
+</head>
+<body>
+<form action="#" method="get" name="form1" id="form1" style="display: none;">
+    <!--获取浏览器的宽高，不能注释-->
+    浏览器窗口 的 实际高度: <input type="text" name="availHeight" size="4"><br>
+    浏览器窗口 的 实际宽度: <input type="text" name="availWidth" size="4"><br>
+</form>
+<div class="container-fluid">
+<div class="row">
+    <div class="col-sm-12 topnavtit"  id="topNav">
+        <span>九江市濂溪区社会救助管理系统</span>
+    </div>
+    <div class="col-sm-12 topNavMsg">
+        <div class="row" style="padding: 5px 0">
+            <div class="col-sm-4">
+                <div id="showtime"></div>
+            </div>
+            <div class="col-sm-2"><span class="uerName">用户：魏工</span></div>
+            <div class="col-sm-5"><span class="uerName">单位：九江新思维科技有限公司</span></div>
+            <div class="col-sm-1"><span class="outLogin">退出</span></div>
+        </div>
+    </div>
+</div>
+<script>
+    function showTime(){
+        var show_day=new Array('星期一','星期二','星期三','星期四','星期五','星期六','星期日');
+        var time=new Date();
+        var year=time.getFullYear();
+        var month=time.getMonth();
+        var date=time.getDate();
+        var day=time.getDay();
+        var hour=time.getHours();
+        var minutes=time.getMinutes();
+        var second=time.getSeconds();
+        month<10?month='0'+month:month;
+        month=month+1;
+        hour<10?hour='0'+hour:hour;
+        minutes<10?minutes='0'+minutes:minutes;
+        second<10?second='0'+second:second;
+        var now_time='当前时间：'+year+'年'+month+'月'+date+'日'+' '+show_day[day-1]+' '+hour+':'+minutes+':'+second;
+        document.getElementById('showtime').innerHTML=now_time;
+        setTimeout("showTime();",1000);
+    }
+    $(document).ready(function () {
+        showTime()
+    })
+</script>
+
+    <div class="row" style="background-color: #f5f5f5;height: 36px;margin-top: 5px;">
+        <div class="col-sm-2" id="leftNavList">
+           
+            <span><a href="##"></a><strong>导航菜单</strong></span>
+        </div>
+        <div class="col-sm-10" >
+            <ul class="breadcrumb" style="overflow: hidden">
+                <li><a href="#">当前位置</a></li>
+                <li><a href="#" class="firstlistval">系统首页</a></li>
+                <li><a href="#" class="secondlistval"></a></li>
+            </ul>
+        </div>
+
+    </div>
+<div class="row" id="contentWrap">
+    <div class="col-sm-2">
+        <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" id="leftNavBar" style="margin-top: -10px;width: 100%">
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;" class="navlisttit">救助档案</a>
+                <dl class="layui-nav-child"  id="layui-nav-child-first">
+                    <dd><a class="a" href="javascript:;">城市低保</a></dd>
+                    <dd><a class="a" href="javascript:;">农村低保</a></dd>
+                    <dd><a class="a" href="javascript:;">临时救助</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item layui-nav-itemed ">
+                <a href="javascript:;" class="navlisttit">业务办理</a>
+                <dl class="layui-nav-child" id="layui-nav-child-second">
+                    <dd><a href="javascript:;">业务申请</a></dd>
+                    <dd><a href="javascript:;">业务审核</a></dd>
+                    <dd><a href="javascript:;">业务审批</a></dd>
+                    <dd><a href="javascript:;">业务查询</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;" class="navlisttit">统计报表</a>
+                <dl class="layui-nav-child" id="layui-nav-child-third">
+                    <dd><a href="javascript:;">资金月发放表</a></dd>
+                    <dd><a href="javascript:;">资金月发放明细</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item layui-nav-itemed">
+                <a href="javascript:;" class="navlisttit">系统管理</a>
+                <dl class="layui-nav-child" id="layui-nav-child-fourth">
+                    <dd><a href="javascript:;">菜单信息</a></dd>
+                    <dd><a href="javascript:;">操作按钮</a></dd>
+                    <dd><a href="javascript:;">角色管理</a></dd>
+                    <dd><a href="javascript:;">组织结构</a></dd>
+                    <dd><a href="javascript:;">账号管理</a></dd>
+                    <dd><a href="javascript:;">密码管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-10" style="margin-top: -10px;">
+        <div class="row" id="mainFlame">
+            <div class="col-sm-12" style="height: 850px;">
+                <iframe class="first-item" src="main.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12" style=";height: 850px" id="banner">
+                <iframe class="first-item" src="family_dibao_city.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="first-item" src="Rural%20minimum%20living%20standard.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="first-item" src="Temporary%20assistance.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="second-item" src="Business%20application.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="second-item" src="Business%20audit.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="second-item" src="Business%20approval.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="second-item" src="Business%20enquiry.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="third-item" src="Monthly%20release%20of%20funds.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="third-item" src="Details%20of%20monthly%20issuance%20of%20funds.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="fourth-item" src="Menu information.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="fourth-item" src="Operation button.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="fourth-item" src="Role management.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="fourth-item" src="organization structure.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="fourth-item" src="account management.html" width="100%" height="100%" frameborder="0"></iframe>
+                <iframe class="fourth-item" src="Password management.html" width="100%" height="100%" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+<script>
+/*    $(function () {
+        $(".layui-nav-item").click(function () {
+            $(this).addClass('layui-nav-itemed').siblings().removeClass('layui-nav-itemed')
+        })
+    });*/
+
+
+//左侧导航栏控制右侧主题内容框架的载入
+    $(function () {
+        $("#banner").hide();
+            $('#banner>.first-item').hide();
+            $('#layui-nav-child-first dd').click(function () {
+                $("#banner").show();
+                $('#banner>.second-item').hide();
+                $('#banner>.third-item').hide();
+                $('#banner>.fourth-item').hide();
+                $("#mainFlame").hide();
+                $('#banner').find('.first-item').css('display', 'none');
+                $('#banner').find('.first-item').eq($(this).index()).fadeIn(1000);
+            });
+        $('#banner>.second-item').hide();
+        $('#layui-nav-child-second dd').click(function () {
+            $("#banner").show();
+            $('#banner>.first-item').hide();
+            $('#banner>.third-item').hide();
+            $('#banner>.fourth-item').hide();
+            $("#mainFlame").hide();
+            $('#banner').find('.second-item').css('display', 'none');
+            $('#banner').find('.second-item').eq($(this).index()).fadeIn(1000);
+        });
+        $('#banner>.third-item').hide();
+        $('#layui-nav-child-third dd').click(function () {
+            $("#banner").show();
+            $('#banner>.first-item').hide();
+            $('#banner>.second-item').hide();
+            $('#banner>.fourth-item').hide();
+            $("#mainFlame").hide();
+            $('#banner').find('.third-item').css('display', 'none');
+            $('#banner').find('.third-item').eq($(this).index()).fadeIn(1000);
+        });
+        $('#banner>.fourth-item').hide();
+        $('#layui-nav-child-fourth dd').click(function () {
+            $("#banner").show();
+            $('#banner>.first-item').hide();
+            $('#banner>.second-item').hide();
+            $('#banner>.third-item').hide();
+            $("#mainFlame").hide();
+            $('#banner').find('.fourth-item').css('display', 'none');
+            $('#banner').find('.fourth-item').eq($(this).index()).fadeIn(1000);
+        });
+    })
+</script>
+    <script>
+        //左侧导航栏
+    layui.use('element', function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        //监听导航点击
+        element.on('nav(demo)', function(elem){
+            //console.log(elem)
+            layer.msg(elem.text());
+        });
+    });
+    //导航路径
+    $(function () {
+        $('.navlisttit').click(function () {
+            var leftNavBarList=$(this).text();
+            //alert(leftNavBarList)
+            $('.firstlistval').text(leftNavBarList)
+        });
+        $('.layui-nav-child dd').click(function () {
+            var leftNavBarList=$(this).text();
+            //alert(secondlistval)
+            $('.secondlistval').text(leftNavBarList)
+        })
+    })
+</script>
+<script type="text/javascript">
+
+    var winWidth = 0;
+    var winHeight = 0;
+    function findDimensions() //函数：获取尺寸
+    {
+        //获取窗口宽度
+        if (window.innerWidth)
+            winWidth = window.innerWidth;
+        else if ((document.body) && (document.body.clientWidth))
+            winWidth = document.body.clientWidth;
+        //获取窗口高度
+        if (window.innerHeight)
+            winHeight = window.innerHeight;
+        else if ((document.body) && (document.body.clientHeight))
+            winHeight = document.body.clientHeight;
+        //通过深入Document内部对body进行检测，获取窗口大小
+        if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth)
+        {
+            winHeight = document.documentElement.clientHeight;
+            winWidth = document.documentElement.clientWidth;
+        }
+        //结果输出至两个文本框
+        /*
+         document.form1.availHeight.value= winHeight;
+         */
+        document.form1.availWidth.value= winWidth;
+        $("input[name=availHeight]").val(winHeight);
+/*        var contentWrapHeight=Number(winHeight-77-62-36);*/
+        var contentWrapHeight=Number(winHeight-113-36-20-32);
+        var bodyHeight=Number(winHeight);
+        //alert(paddingTop)
+        //alert(diffrentHight)
+        $("#contentWrap").css({
+            "height":contentWrapHeight,
+            "width":winWidth,
+            "overflow":"auto"
+        });
+        $("#lefcontent").css({
+            "height":contentWrapHeight,
+            "overflow":"auto"
+        });
+        $("#rightcontentIframe").css({
+            "height":contentWrapHeight,
+            "overflow":"auto",
+            "overflow-y":"hidden",
+        });
+        if(bodyHeight>768){
+            $(".layui-nav-item:gt(1)").addClass('layui-nav-itemed')
+        }
+    }
+    findDimensions();
+    //调用函数，获取数值
+    window.onresize=findDimensions;
+</script>
+</body>
+</html>

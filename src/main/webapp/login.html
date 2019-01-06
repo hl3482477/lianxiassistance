@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>九江市濂溪区社会救助管理系统-登陆</title>
+    <link rel="stylesheet" href="layui/css/layui.css">
+    <link rel="stylesheet" href="layui/css/layui.mobile.css">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="layui/layui.js"  media="all"></script>
+    <style>
+        .wrap{
+            background: url("img/bgi2.jpg");
+            background-position: center center;
+            background-size: cover;
+        }
+        #formcontent{
+            background: #123a55;
+            border: 1px solid #555e65;
+            -moz-box-shadow:  0 0  5px #252634;
+            box-shadow: 0 0  60px #252634;
+            text-align: center;
+            position: relative;
+        }
+        .closeForm{
+            position: fixed;
+            display: block;
+            width: 30px;
+            height: 30px;
+            border-radius: 30px;
+            border: 1px solid white;
+            color: white;
+            line-height: 30px;
+            font-size: 20px;
+            cursor: pointer;
+            margin-top: 20px;
+            z-index: 200;
+            text-align: center;
+        }
+        #formcontent label{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<form action="#" method="get" name="form1" id="form1" style="display: none;">
+    <!--显示浏览器窗口的实际尺寸，不得注释-->
+    浏览器窗口 的 实际高度: <input type="text" name="availHeight" size="4"><br>
+    浏览器窗口 的 实际宽度: <input type="text" name="availWidth" size="4"><br>
+</form>
+<div class="wrap">
+    <span class="closeForm" >X</span>
+    <div class="container-fluid" id="formWrap">
+        <div class="row">
+            <div class="col-sm-4">.</div>
+            <div class="col-sm-8">
+                <div class="col-sm-1">.</div>
+                <div class="col-sm-11"  id="formcontent">
+                    <form class="form-horizontal" role="form" style="width: 65%;margin: 0 auto;padding: 120px  0;">
+                        <div class="form-group">
+                            <label for="username" class="col-sm-2 control-label"><i class="glyphicon glyphicon-user" style="padding-right: 10px;"></i>账号:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="username"
+                                       placeholder="请输入账号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-sm-2 control-label"><i class="glyphicon glyphicon-lock" style="padding-right: 10px;"></i>密码:</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" id="password"
+                                       placeholder="请输入密码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-default form-control">登录</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $(".closeForm").click(function () {
+            if($(this).html()=="X"){
+                $("#formWrap").fadeOut();
+                $(this).html("+");
+                $(this).attr("title","显示")
+            }
+            else if($(this).html()=="+"){
+                $("#formWrap").fadeIn();
+                $(this).html("X");
+
+                $(this).attr("title","隐藏")
+            }
+
+
+        })
+    });
+</script>
+<script type="text/javascript">
+
+    var winWidth = 0;
+    var winHeight = 0;
+    function findDimensions() //函数：获取尺寸
+    {
+        //获取窗口宽度
+        if (window.innerWidth)
+            winWidth = window.innerWidth;
+        else if ((document.body) && (document.body.clientWidth))
+            winWidth = document.body.clientWidth;
+        //获取窗口高度
+        if (window.innerHeight)
+            winHeight = window.innerHeight;
+        else if ((document.body) && (document.body.clientHeight))
+            winHeight = document.body.clientHeight;
+        //通过深入Document内部对body进行检测，获取窗口大小
+        if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth)
+        {
+            winHeight = document.documentElement.clientHeight;
+            winWidth = document.documentElement.clientWidth;
+        }
+        //结果输出至两个文本框
+        /*
+         document.form1.availHeight.value= winHeight;
+         */
+        document.form1.availWidth.value= winWidth;
+        $("input[name=availHeight]").val(winHeight);
+        var paddingTop=winHeight/3;
+        var closeFormfixedX=winWidth/40;
+        var closeFormfixedY=winHeight/3;
+        //alert(paddingTop)
+        //alert(diffrentHight)
+        $(".wrap").css({
+            "width":winWidth,
+            "height":winHeight,
+        });
+        $("#formWrap").css({
+            "padding-top":paddingTop+"px",
+        })
+        $(".closeForm").css({
+            "top":closeFormfixedY+"px",
+            "right":closeFormfixedX+"px",
+        })
+    }
+    findDimensions();
+    //调用函数，获取数值
+    window.onresize=findDimensions;
+</script>
+</body>
+</html>

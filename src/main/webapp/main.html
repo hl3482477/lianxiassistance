@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>默认界面</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css">
+</head>
+<style>
+    img:hover{
+        cursor: pointer;
+    }
+    /*滚动条样式*/
+    .panel-body::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 1px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+    }
+    .panel-body::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+        border-radius: 5px;
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        background: rgba(0,0,0,0.2);
+    }
+    .panel-body::-webkit-scrollbar-track {/*滚动条里面轨道*/
+        -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+        border-radius: 0;
+        background: rgba(0,0,0,0.1);
+    }
+</style>
+<body>
+<form action="#" method="get" name="form1" id="form1" style="display: none;">
+    <!--获取浏览器的宽高，不能注释-->
+    浏览器窗口 的 实际高度: <input type="text" name="availHeight" size="4"><br>
+    浏览器窗口 的 实际宽度: <input type="text" name="availWidth" size="4"><br>
+</form>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        我的任务<span style="float: right"><img style="width: 20px;height: 20px;" title="放大" src="img/large.svg" alt=""></span>
+                    </div>
+                    <div class="panel-body" style="height: 200px;overflow: auto">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>任务类型</th>
+                                <th>日期</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Tanmay</td>
+                                <td>Bangalore</td>
+                                <td>560001</td>
+                            </tr>
+                            <tr>
+                                <td>Sachin</td>
+                                <td>Mumbai</td>
+                                <td>400003</td>
+                            </tr>
+                            <tr>
+                                <td>Uma</td>
+                                <td>Pune</td>
+                                <td>411027</td>
+                            </tr>
+                            <tr>
+                                <td>Uma</td>
+                                <td>Pune</td>
+                                <td>411027</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="3" style="text-align: right;cursor: pointer">更多</td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        通知公告<span style="float: right"><img style="width: 20px;height: 20px;" title="放大" src="img/large.svg" alt=""></span>
+                    </div>
+                    <div class="panel-body" style="height: 200px;overflow: auto">
+                        <ul class="layui-timeline">
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis"></i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">8月18日</h3>
+                                    <p>
+                                        layui 2.0 的一切准备工作似乎都已到位。发布之弦，一触即发。
+                                        <br>不枉近百个日日夜夜与之为伴。因小而大，因弱而强。
+                                        <br>无论它能走多远，抑或如何支撑？至少我曾倾注全心，无怨无悔 <i class="layui-icon"></i>
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis"></i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">8月16日</h3>
+                                    <p>杜甫的思想核心是儒家的仁政思想，他有<em>“致君尧舜上，再使风俗淳”</em>的宏伟抱负。个人最爱的名篇有：</p>
+                                    <ul>
+                                        <li>《登高》</li>
+                                        <li>《茅屋为秋风所破歌》</li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis"></i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">8月15日</h3>
+                                    <p>
+                                        中国人民抗日战争胜利日
+                                        <br>常常在想，尽管对这个国家有这样那样的抱怨，但我们的确生在了最好的时代
+                                        <br>铭记、感恩
+                                        <br>所有为中华民族浴血奋战的英雄将士
+                                        <br>永垂不朽
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis"></i>
+                                <div class="layui-timeline-content layui-text">
+                                    <div class="layui-timeline-title" style="cursor: pointer">更多</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6" style="">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        曲线图<span style="float: right"><img style="width: 20px;height: 20px;" title="放大" src="img/large.svg" alt=""></span>
+                    </div>
+                    <div class="panel-body" style="height: 200px;overflow: auto">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        当月业务情况<span style="float: right"><img style="width: 20px;height: 20px;" title="放大" src="img/large.svg" alt=""></span>
+                    </div>
+                    <div class="panel-body" style="height: 200px;overflow: auto">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                            <tr>
+                                <th>乡镇</th>
+                                <th>新增</th>
+                                <th>审批</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Tanmay</td>
+                                <td>Bangalore</td>
+                                <td>560001</td>
+                            </tr>
+                            <tr>
+                                <td>Sachin</td>
+                                <td>Mumbai</td>
+                                <td>400003</td>
+                            </tr>
+                            <tr>
+                                <td>Uma</td>
+                                <td>Pune</td>
+                                <td>411027</td>
+                            </tr>
+                            <tr>
+                                <td>Uma</td>
+                                <td>Pune</td>
+                                <td>411027</td>
+                            </tr>
+                            </tbody>
+                            <tfoot>
+                            <tr>
+                                <td colspan="3" style="text-align: right;cursor: pointer">更多</td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var winWidth = 0;
+    var winHeight = 0;
+    function findDimensions() //函数：获取尺寸
+    {
+        //获取窗口宽度
+        if (window.innerWidth)
+            winWidth = window.innerWidth;
+        else if ((document.body) && (document.body.clientWidth))
+            winWidth = document.body.clientWidth;
+        //获取窗口高度
+        if (window.innerHeight)
+            winHeight = window.innerHeight;
+        else if ((document.body) && (document.body.clientHeight))
+            winHeight = document.body.clientHeight;
+        //通过深入Document内部对body进行检测，获取窗口大小
+        if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth)
+        {
+            winHeight = document.documentElement.clientHeight;
+            winWidth = document.documentElement.clientWidth;
+        }
+        //结果输出至两个文本框
+        /*
+         document.form1.availHeight.value= winHeight;
+         */
+        document.form1.availWidth.value= winWidth;
+        $("input[name=availHeight]").val(winHeight);
+        var contentWrapHeight=Number(winHeight-113-36-37-20);
+        var contentWrapHeight2=Number(winHeight-113-102);
+        $("#contentWrap").css({
+            "height":contentWrapHeight,
+            "width":winWidth,
+            "overflow":"auto",
+            "overflow-y":"hidden",
+        });
+        $("#mainFrameTabs").css({
+            "height":contentWrapHeight,
+            "overflow":"auto",
+            "overflow-y":"hidden",
+        });
+        $("#menuSideBar").css({
+            "height":contentWrapHeight,
+            "overflow":"auto",
+
+        });
+        /*     $('#bTabs_tab1').css({
+         "height":contentWrapHeight2,
+         "overflow":"auto",
+         })*/
+        $(function () {
+            $('span').click(function () {
+                var imgTitle=$(this).children().attr("title");
+                if(imgTitle=="放大"){
+                    $(this).parent().parent().parent().siblings().toggle();
+                    $(this).parent().parent().parent().attr("class","col-sm-12").css("height",contentWrapHeight);
+                    $(this).parent().siblings('.panel-body').css("height",contentWrapHeight2);
+                    $(this).parent().siblings('.panel-body').children().css("height","80%");
+                    $(this).children().attr("title","缩小");
+                    $(this).children().attr("src","img/small.svg");
+                }
+                else {
+                    $(this).parent().parent().parent().siblings().toggle();
+                    $(this).parent().parent().parent().attr("class","col-sm-6").css("height","263px");
+                    $(this).parent().siblings('.panel-body').css("height","200px");
+                    $(this).parent().siblings('.panel-body').children().css("height","80%");
+                    $(this).children().attr("title","放大");
+                    $(this).children().attr("src","img/large.svg");
+                }
+            })
+        })
+    }
+    findDimensions();
+    //调用函数，获取数值
+    window.onresize=findDimensions;
+</script>
+</body>
+</html>
